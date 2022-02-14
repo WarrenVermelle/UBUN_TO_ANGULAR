@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { WindowComponent } from './window/window.component';
 import { ShortcutsComponent } from './shortcuts/shortcuts.component';
 import { TaskbarComponent } from './taskbar/taskbar.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TaskbarComponent } from './taskbar/taskbar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
