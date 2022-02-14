@@ -1,0 +1,30 @@
+@import '../../styles.scss';
+
+#taskbar
+{
+  width: 100vw;
+
+  color: $background;
+  text-shadow: 1px 1px 1px $blue;
+
+  background-color: $yellow;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  div
+  {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+
+    cursor: pointer;
+  }
+
+  div:hover
+  {
+    text-shadow: 1px 1px 1px $pink;
+  }
+}

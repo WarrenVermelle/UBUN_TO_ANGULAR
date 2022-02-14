@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face
+{
+    font-family: 'Zen dots';
+    src: url("/assets/fonts/ZenDots-Regular.ttf");
+}
+
+$yellow : #f3e600;
+$blue : #04daf6;
+$pink : #ff003c;
+$grey : #554b41;
+$background : #01012b;
+
+body
+{
+  margin: 0;
+
+  color: $blue;
+  font-family: 'Zen dots';
+  font-size: 0.9em;
+
+  background: linear-gradient(180deg, $background, $pink 500%);
+}

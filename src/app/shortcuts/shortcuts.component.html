@@ -1,0 +1,14 @@
+<div id="shortcuts">
+    <div *ngFor="let app of apps" 
+        id="{{ app.title }}" 
+        class="shortcut" 
+        (click)="onClickShortcut(app)" 
+        [ngClass]="{ 'reduced': app.reduced, 'focused': app.focused }">
+
+        <span>{{ app.title | uppercase }}</span>
+        <svg [attr.viewBox]="app.icon[0]">
+            <path [attr.d]="app.icon[1]" />
+        </svg>
+        
+    </div>
+</div>
