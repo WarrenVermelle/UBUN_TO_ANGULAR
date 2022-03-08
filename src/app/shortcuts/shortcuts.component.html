@@ -1,14 +1,23 @@
 <div id="shortcuts">
-    <div *ngFor="let app of apps" 
-        id="{{ app.title }}" 
-        class="shortcut" 
-        (click)="onClickShortcut(app)" 
-        [ngClass]="{ 'reduced': app.reduced, 'focused': app.focused }">
+    <div class="apps">
+        <div *ngFor="let app of apps" 
+            id="{{ app.title }}" 
+            class="shortcut" 
+            (click)="onClickShortcut(app)" 
+            [ngClass]="{ 'opened': app.opened, 'reduced': app.reduced, 'focused': app.focused }">
 
-        <span>{{ app.title | uppercase }}</span>
-        <svg [attr.viewBox]="app.icon[0]">
-            <path [attr.d]="app.icon[1]" />
-        </svg>
-        
+            <div [ngClass]="{ 'dot': app.opened }"></div>
+
+            <svg [attr.viewBox]="app.icon[0]">
+                <path [attr.d]="app.icon[1]" />
+            </svg>
+
+            <p class="title">{{ app.title | titlecase }}</p>
+        </div>
+        <div id="all" class="shortcut">
+            <svg [attr.viewBox]="apps[4].icon[0]">
+                <path [attr.d]="apps[4].icon[1]" />
+            </svg>
+        </div>
     </div>
 </div>

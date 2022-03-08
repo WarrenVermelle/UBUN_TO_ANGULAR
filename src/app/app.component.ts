@@ -19,4 +19,9 @@ export class AppComponent implements OnInit{
     
   }
 
+  // onClickBackground() {
+  //   this.apps.forEach(function(app) {
+  //     app.focused = false;
+  //   });
+  // }
 }

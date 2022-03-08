@@ -20,11 +20,13 @@ export class ShortcutsComponent implements OnInit {
 
     if(app.opened === false) {
       app.opened = true;
-      app.reduced = true;
       this.apps.forEach(function(app) {
         app.focused = false;
       });
       app.focused = true;
+      app.reduced = false;
+    } else if(app.reduced === true){
+      app.reduced = false;
     } else {
       this.apps.forEach(function(app) {
         app.focused = false;

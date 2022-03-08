@@ -2,8 +2,8 @@
 
 @font-face
 {
-    font-family: 'Zen dots';
-    src: url("/assets/fonts/ZenDots-Regular.ttf");
+    font-family: 'Ubuntu';
+    src: url("/assets/fonts/ubuntu-font-family/Ubuntu-L.ttf");
 }
 
 $yellow : #f3e600;
@@ -16,9 +16,12 @@ body
 {
   margin: 0;
 
-  color: $blue;
-  font-family: 'Zen dots';
-  font-size: 0.9em;
+  color: whitesmoke;
+  font-family: 'Ubuntu';
 
-  background: linear-gradient(180deg, $background, $pink 500%);
+  background: linear-gradient(45deg, #DD4814, #77216F, #5E2750, #AEA79F, #333333);
+
+  overflow: hidden;
+
+  cursor: default;
 }

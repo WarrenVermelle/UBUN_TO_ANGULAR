@@ -14,5 +14,6 @@ export class App {
     maximized!: boolean;
     reduced!: boolean;
     focused!: boolean;
+    position!: string;
     
 }

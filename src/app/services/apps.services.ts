@@ -1,3 +1,4 @@
+import { NONE_TYPE } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { App } from "../models/apps.model";
 
@@ -28,7 +29,8 @@ export class AppsService {
             opened: false,
             maximized: false,
             reduced: false,
-            focused: false
+            focused: false,
+            position: 'translate3d(0px, 0px, 0px)',
         },
         {
             id: 2,
@@ -45,7 +47,8 @@ export class AppsService {
             opened: false,
             maximized: false,
             reduced: false,
-            focused: false
+            focused: false,
+            position: 'translate3d(0px, 0px, 0px)',
         },
         {
             id: 3,
@@ -83,7 +86,8 @@ export class AppsService {
             opened: false,
             maximized: false,
             reduced: false,
-            focused: false
+            focused: false,
+            position: 'translate3d(0px, 0px, 0px)',
         },
         {
             id: 4,
@@ -102,7 +106,8 @@ export class AppsService {
             opened: false,
             maximized: false,
             reduced: false,
-            focused: false
+            focused: false,
+            position: 'translate3d(0px, 0px, 0px)',
         },
         {
             id: 5,
@@ -133,9 +138,14 @@ export class AppsService {
             opened: false,
             maximized: false,
             reduced: false,
-            focused: false
+            focused: false,
+            position: 'translate3d(0px, 0px, 0px)',
         }
     ]
+
+    getAllApps(): App[] {
+        return this.apps;
+    }
 
     getAppById(appId: number): App {
         const app = this.apps.find(app => app.id === appId);
@@ -143,6 +153,12 @@ export class AppsService {
             throw new Error('App not found!');
         } else {
             return app;
+        }
+    }
+
+    unfocusAll(): void{
+        for (const app of this.apps) {
+            app.focused = false;
         }
     }
 }

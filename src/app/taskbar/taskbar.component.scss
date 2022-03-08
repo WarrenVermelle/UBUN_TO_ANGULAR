@@ -2,29 +2,26 @@
 
 #taskbar
 {
-  width: 100vw;
+  height: 27px;
 
-  color: $background;
-  text-shadow: 1px 1px 1px $blue;
-
-  background-color: $yellow;
+  background-color: rgba(29,29,29,255);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  div
-  {
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 12px;
-    margin-bottom: 12px;
-
-    cursor: pointer;
-  }
-
+  padding-left: 12px;
+  padding-right: 12px;
+  
   div:hover
   {
-    text-shadow: 1px 1px 1px $pink;
+    color: white;
+  }
+
+  .settings
+  {
+    width: auto;
+    display: flex;
+    justify-content: space-around;
   }
 }

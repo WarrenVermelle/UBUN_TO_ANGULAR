@@ -1,5 +1,13 @@
 <div id="taskbar">
-    <div id="date">{{ date | date | uppercase }}</div>
-    <div id="time">{{ time | date:'HH:mm:ss' }}</div>
-    <div id="settings" routerLink='settings'>SETTINGS</div>
+    <div class="left">
+        <div>Activities</div>
+        <div class="active"></div>
+    </div>
+    <div class="time">{{ time | date : 'MMM. d h:mm a' | lowercase }}</div>
+    <div class="settings">
+        <div class="network">o</div>
+        <div class="sound">o</div>
+        <div class="shutdown">o</div>
+        <div class="dropdown">v</div>
+    </div>
 </div>

@@ -11,9 +11,11 @@ export class TaskbarComponent implements OnInit {
   time!: number;
 
   constructor() {
+
     setInterval(() => {
       this.time = Date.now();
     }, 1);
+
   }
 
   ngOnInit(): void {
