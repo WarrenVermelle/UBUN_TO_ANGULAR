@@ -22,6 +22,7 @@ export class AppsService {
                 h-264c-22.101,0-40-17.9-40-40s17.899-40,40-40h264c22.1,0,40,17.9,40,40S881.5,642.5,859.4,642.5z M859.4,405.5h-264
                 c-22.101,0-40-17.9-40-40s17.899-40,40-40h264c22.1,0,40,17.9,40,40S881.5,405.5,859.4,405.5z`
             ],
+            type: 'app',
             content: [{
                 text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. At aperiam maxime consequuntur officia necessitatibus commodi pariatur, provident dolor nam modi reprehenderit est velit quis iure, vel, libero dolore. Ad, rem.',
                 img: '../../assets/images/sr.png'
@@ -30,16 +31,23 @@ export class AppsService {
             maximized: false,
             reduced: false,
             focused: false,
-            position: 'translate3d(0px, 0px, 0px)',
+            shortcuted: [{
+                shortcut: true,
+                shortcut_pos: 3,
+                desktop: false,
+                desktop_pos: 0
+            }],
+            position: '',
         },
         {
             id: 2,
-            title: 'projects',
+            title: 'files',
             icon: [
                 '0 0 124 124',
                 `M118,25.5H62v-4c0-3.3-2.7-6-6-6H6c-3.3,0-6,2.7-6,6v10.2v6.5v64.3c0,3.3,2.7,6,6,6h111c3.8,0,7-3.2,7-7v-70
                 C124,28.2,121.3,25.5,118,25.5z`
             ],
+            type: 'explorer',
             content: [{
                 text: 'oo',
                 img: 'oo'
@@ -48,7 +56,13 @@ export class AppsService {
             maximized: false,
             reduced: false,
             focused: false,
-            position: 'translate3d(0px, 0px, 0px)',
+            shortcuted: [{
+                shortcut: true,
+                shortcut_pos: 1,
+                desktop: false,
+                desktop_pos: 0
+            }],
+            position: '',
         },
         {
             id: 3,
@@ -79,6 +93,7 @@ export class AppsService {
                 c6.1-11.3,11.899-23.199,17.3-35.399c18.6,5.6,36.2,11.899,52.6,18.899C730.5,824.5,696.7,846.5,660,863.3z M817.7,736.5
                 c-25.2-12.399-52.8-23.3-82.8-32.5c15.5-53.8,25-112.7,27.899-173.899H898C890.601,607.101,861.9,677.9,817.7,736.5z`
             ],
+            type: 'app',
             content: [{
                 text: 'oo',
                 img: 'oo'
@@ -87,7 +102,13 @@ export class AppsService {
             maximized: false,
             reduced: false,
             focused: false,
-            position: 'translate3d(0px, 0px, 0px)',
+            shortcuted: [{
+                shortcut: true,
+                shortcut_pos: 0,
+                desktop: false,
+                desktop_pos: 0
+            }],
+            position: '',
         },
         {
             id: 4,
@@ -99,6 +120,7 @@ export class AppsService {
                 c-2.9-2.9-2.2-8.1,2.1-9.9c2.2-0.9,4.7-0.3,6.3,1.4l19.7,19.7c1.2,1.2,1.8,2.7,1.8,4.2S43.8,56.55,42.6,57.75z M86.5,79.15h-36
                 c-3.3,0-6-2.7-6-6s2.7-6,6-6h36c3.3,0,6,2.7,6,6S89.8,79.15,86.5,79.15z`
             ],
+            type: 'other',
             content: [{
                 text: 'oo',
                 img: 'oo'
@@ -107,7 +129,13 @@ export class AppsService {
             maximized: false,
             reduced: false,
             focused: false,
-            position: 'translate3d(0px, 0px, 0px)',
+            shortcuted: [{
+                shortcut: true,
+                shortcut_pos: 2,
+                desktop: false,
+                desktop_pos: 0
+            }],
+            position: '',
         },
         {
             id: 5,
@@ -131,6 +159,7 @@ export class AppsService {
                 M933.25,703.1h-202c-16.601,0-30,13.4-30,30v202.1c0,16.602,13.399,30,30,30h202.1c16.601,0,30-13.398,30-30V733.1
                 C963.25,716.6,949.85,703.1,933.25,703.1z`
             ],
+            type: 'menu',
             content: [{
                 text: 'oo',
                 img: 'oo'
@@ -139,7 +168,13 @@ export class AppsService {
             maximized: false,
             reduced: false,
             focused: false,
-            position: 'translate3d(0px, 0px, 0px)',
+            shortcuted: [{
+                shortcut: false,
+                shortcut_pos: 0,
+                desktop: false,
+                desktop_pos: 0
+            }],
+            position: '',
         }
     ]
 
@@ -154,6 +189,18 @@ export class AppsService {
         } else {
             return app;
         }
+    }
+
+    getShortcutedApp(): App[] {
+        let shortcutedApps: App[] = [];
+        for(const app of this.apps)
+        {
+            if(app.shortcuted[0].shortcut === true)
+            {
+                shortcutedApps[app.shortcuted[0].shortcut_pos] = app;
+            }
+        }
+        return shortcutedApps;
     }
 
     unfocusAll(): void{

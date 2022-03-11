@@ -10,18 +10,12 @@ import { AppsService } from './services/apps.services';
 export class AppComponent implements OnInit{
 
   apps!: App[];
+  shortcutedApps!: App[];
 
   constructor(private appsService: AppsService) {}
 
   ngOnInit(): void {
-
     this.apps = this.appsService.apps
-    
+    this.shortcutedApps = this.appsService.getShortcutedApp();
   }
-
-  // onClickBackground() {
-  //   this.apps.forEach(function(app) {
-  //     app.focused = false;
-  //   });
-  // }
 }

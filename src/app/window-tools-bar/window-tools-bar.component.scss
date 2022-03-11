@@ -1,0 +1,101 @@
+:host
+{
+    flex-grow: 1;
+}
+
+.tools
+{
+    display: flex;
+    align-items: center;
+
+    .single
+    {
+        width: 34px;
+        height: 32px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: rgba(62,62,62,255);
+        border: 1px solid rgba(37,37,37,255);
+        border-radius: 4px;
+    }
+
+    .couple
+    {
+        display: flex;
+
+        .left
+        {
+            border-radius: 4px 0px 0px 4px;
+        }
+        .right
+        {
+            border-top: 1px solid rgba(37,37,37,255);
+            border-right: 1px solid rgba(37,37,37,255);
+            border-bottom: 1px solid rgba(37,37,37,255);
+            border-left: none;
+
+            border-radius: 0px 4px 4px 0px;
+        }
+
+        .inactive
+        {
+            background-color: rgba(58,58,58,255) !important;
+        }
+    }
+
+    .nav
+    {
+        margin: 6px;
+    }
+
+    .center
+    {
+        display: flex;
+        flex-grow: 1;
+
+        .current
+        {
+            width: fit-content;
+            display: flex;
+            justify-content: space-evenly;
+
+            div
+            {
+                padding: 0px 10px 0px 10px;
+            }
+        }
+
+        .search_box
+        {
+            display: none;
+
+            .input_field
+            {
+
+            }
+
+            .sort
+            {
+
+            }
+        }
+    }
+
+    .search
+    {
+        margin: 6px;
+    }
+
+    .view
+    {
+
+    }
+
+    .properties
+    {
+        margin: 6px;
+    }
+}

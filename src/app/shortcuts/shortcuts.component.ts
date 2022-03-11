@@ -9,6 +9,7 @@ import { App } from '../models/apps.model';
 export class ShortcutsComponent implements OnInit {
 
   @Input() apps!: App[];
+  @Input() shortcutedApps!: App[];
 
   constructor() { }
 
@@ -16,23 +17,25 @@ export class ShortcutsComponent implements OnInit {
 
   }
 
-  onClickShortcut(app: App) {
-
-    if(app.opened === false) {
-      app.opened = true;
-      this.apps.forEach(function(app) {
+  onClickShortcut(shortcutedApp: App) {
+    if(shortcutedApp.opened === false) {
+      shortcutedApp.opened = true;
+      this.shortcutedApps.forEach(function(app) {
         app.focused = false;
       });
-      app.focused = true;
-      app.reduced = false;
-    } else if(app.reduced === true){
-      app.reduced = false;
+      shortcutedApp.focused = true;
+      shortcutedApp.reduced = false;
+    } else if(shortcutedApp.reduced === true){
+      shortcutedApp.reduced = false;
+      this.shortcutedApps.forEach(function(app) {
+        app.focused = false;
+      });
+      shortcutedApp.focused = true;
     } else {
       this.apps.forEach(function(app) {
         app.focused = false;
       });
-      app.focused = true;
+      shortcutedApp.focused = true;
     }
-    
   }
 }

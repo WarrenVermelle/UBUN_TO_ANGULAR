@@ -1,54 +1,20 @@
-<div class="window" *ngIf="app.opened" [ngClass]="{ 'maximized': app.maximized, 'reduced': app.reduced, 'focused': app.focused }"
-     cdkDragBoundary="#background" cdkDrag [cdkDragDisabled]="app.maximized" (mousedown)="onFocus(app)" 
-     [ngStyle]="{ 'transform' : app.maximized ? 'none' : app.position }">
+<div class="window" 
+        *ngIf="app.opened" 
+        [ngClass]="{ 'maximized': app.maximized, 'minimized': !app.maximized, 'reduced': app.reduced, 'focused': app.focused, 'moving': moving }"
+        (mousedown)="onFocus(app)" 
+        [ngStyle]="{ 'transform' : app.maximized ? 'none' : app.position }" 
+        cdkDragBoundary="#background" 
+        cdkDrag [cdkDragDisabled]="app.maximized" 
+        (cdkDragStarted)="moving = true" 
+        (cdkDragEnded)="moving = false">
+
     <div class="top_bar" cdkDragHandle>
-        <div class="tools">
-            <div class="couple nav">
-                <div class="single left"><</div>
-                <div class="single right">></div>
-            </div>
-            <div class="center">
-                <div class="single current">
-                    <div>x</div>
-                    <div class="current_title">{{ app.title | titlecase }}</div>
-                    <div>v</div>
-                </div>
-                <div class="search_box">
-                    <div class="input_field"></div>
-                    <div class="sort"></div>
-                </div>
-            </div>
-            <div class="single search">O</div>
-            <div class="couple view">
-                <div class="single left">-</div>
-                <div class="single right">v</div>
-            </div>
-            <div class="single properties">E</div>
-        </div>
-        <div class="buttons">
-            <svg (click)="onReduce(app)" version="1.1" id="reduce" class="button reduce" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            width="124px" height="124px" viewBox="0 0 124 124" style="enable-background:new 0 0 124 124;" xml:space="preserve">
-                <path d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z"/>
-            </svg>
-            <svg (click)="onMaximize(app)" version="1.1" id="maximize" class="button maximize" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            width="963.8px" height="963.799px" viewBox="0 0 963.8 963.799" style="enable-background:new 0 0 963.8 963.799;"
-            xml:space="preserve">
-                <path d="M963.8,833.1V388.9c0-33.1-26.899-60-60-60H765.6v246c0,32.1-12.5,62.2-35.1,84.9c-22.6,22.699-52.9,35.1-84.9,35.1H258.3
-                    v138.2c0,33.1,26.9,60,60,60H903.9C937,893.1,963.8,866.2,963.8,833.1z"/>
-                <path d="M0,130.7v444.2c0,33.1,26.9,60,60,60h198.2h387.3c33.1,0,60-26.9,60-60v-246V130.7c0-33.1-26.9-60-60-60H60
-                    C26.9,70.7,0,97.6,0,130.7z"/>
-            </svg>
-            <svg (click)="onClose(app)" version="1.1" id="close" class="button close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            width="123.05px" height="123.05px" viewBox="0 0 123.05 123.05" style="enable-background:new 0 0 123.05 123.05;"
-            xml:space="preserve">
-                <path d="M121.325,10.925l-8.5-8.399c-2.3-2.3-6.1-2.3-8.5,0l-42.4,42.399L18.726,1.726c-2.301-2.301-6.101-2.301-8.5,0l-8.5,8.5
-                    c-2.301,2.3-2.301,6.1,0,8.5l43.1,43.1l-42.3,42.5c-2.3,2.3-2.3,6.1,0,8.5l8.5,8.5c2.3,2.3,6.1,2.3,8.5,0l42.399-42.4l42.4,42.4
-                    c2.3,2.3,6.1,2.3,8.5,0l8.5-8.5c2.3-2.3,2.3-6.1,0-8.5l-42.5-42.4l42.4-42.399C123.625,17.125,123.625,13.325,121.325,10.925z"/>
-            </svg>
-        </div>
+        <!-- tools in top -->
+        <app-window-tools-bar [app]="app"></app-window-tools-bar>
+    
+        <!-- reduce, maximize & close buttons -->
+        <app-window-buttons [app]="app"></app-window-buttons>
     </div>
-    <div class="display">
-        <div class="left_panel"></div>
-        <div class="content_panel"></div>
-    </div>
+
+    <app-window-content></app-window-content>
 </div>

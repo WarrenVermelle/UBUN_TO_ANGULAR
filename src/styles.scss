@@ -6,12 +6,6 @@
     src: url("/assets/fonts/ubuntu-font-family/Ubuntu-L.ttf");
 }
 
-$yellow : #f3e600;
-$blue : #04daf6;
-$pink : #ff003c;
-$grey : #554b41;
-$background : #01012b;
-
 body
 {
   margin: 0;
@@ -24,4 +18,93 @@ body
   overflow: hidden;
 
   cursor: default;
+}
+
+// ---------- state of window ---------- //
+
+.reduced
+{
+  display: none !important;
+}
+
+.minimized
+{
+    width: 611px;
+
+    border-radius: 8px 8px 0px 0px;
+
+    box-shadow: 0px 0px 15px -10px black;
+
+    .top_bar
+    {
+        border-radius: 6px 6px 0px 0px;
+    }
+}
+
+.maximized
+{
+  width: calc(100vw - 74px);
+  height: calc(100vh - 29px);
+}
+
+.focused
+{
+  box-shadow: 0px 0px 15px -2px black;
+
+  z-index: 50;
+  
+  .top_bar
+  {
+    background-color: rgba(44,44,44,255);
+    color: white;
+
+    .tools
+    {
+        .single
+        {
+          background-color: rgba(72,72,72,255) !important;
+        }
+        .single:hover
+        {
+          background-color: rgba(78,78,78,255) !important;
+        }
+    }
+
+    .buttons
+    {
+      .reduce, .maximize
+      {
+        fill: white !important;
+      }
+    
+      .close
+      {
+        background-color: rgba(223,74,22,255) !important;
+      }
+    
+      .close:hover
+      {
+        background-color: rgba(233,88,37,255) !important;
+      }
+    }
+  }
+
+  .content
+  {
+    .left_panel
+    {
+      background-color: rgba(62,62,62,255) !important;
+      color: white;
+    }
+
+    .central_panel
+    {
+      background-color: rgba(52,52,52,255) !important;
+    }
+  }
+}
+
+.moving
+{
+    cursor: grabbing;
 }

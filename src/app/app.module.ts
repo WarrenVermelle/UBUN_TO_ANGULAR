@@ -7,6 +7,11 @@ import { WindowComponent } from './window/window.component';
 import { ShortcutsComponent } from './shortcuts/shortcuts.component';
 import { TaskbarComponent } from './taskbar/taskbar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ExplorerTopBarComponent } from './apps/explorer/explorer-top-bar/explorer-top-bar.component';
+import { ExplorerContentComponent } from './apps/explorer/explorer-content/explorer-content.component';
+import { WindowButtonsComponent } from './window-buttons/window-buttons.component';
+import { WindowToolsBarComponent } from './window-tools-bar/window-tools-bar.component';
+import { WindowContentComponent } from './window-content/window-content.component';
 
 // locale time
 // import { registerLocaleData } from '@angular/common';
@@ -19,6 +24,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     WindowComponent,
     ShortcutsComponent,
     TaskbarComponent,
+    ExplorerTopBarComponent,
+    ExplorerContentComponent,
+    WindowButtonsComponent,
+    WindowToolsBarComponent,
+    WindowContentComponent,
   ],
   imports: [
     BrowserModule,

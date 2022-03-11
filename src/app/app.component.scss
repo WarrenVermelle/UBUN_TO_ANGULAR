@@ -15,21 +15,6 @@
 
     display: flex;
 
-    a
-    {
-      color: $blue;
-      text-decoration: none;
-    }
-    a:hover
-    {
-      color: $pink;
-      cursor: pointer;
-    }
-    a div
-    {
-      padding-bottom: 5px;
-    }
-
     #desktop
     {
       display: flex;

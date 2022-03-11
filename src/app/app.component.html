@@ -1,7 +1,7 @@
 <div id="root">
   <app-taskbar></app-taskbar>
   <div id="background">
-    <app-shortcuts [apps]="apps"></app-shortcuts>
+    <app-shortcuts [apps]="apps" [shortcutedApps]="shortcutedApps"></app-shortcuts>
     <div id="desktop">
       <app-window *ngFor="let app of apps" [app]="app"></app-window>
     </div>
