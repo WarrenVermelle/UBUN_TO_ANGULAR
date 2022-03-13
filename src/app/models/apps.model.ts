@@ -22,5 +22,6 @@ export class App {
         desktop_pos: number
     }];
     position!: string;
-    
+    width!: number;
+    height!: number;
 }

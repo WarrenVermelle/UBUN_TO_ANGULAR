@@ -1,7 +1,11 @@
 <div id="taskbar">
     <div class="left">
         <div>Activities</div>
-        <div class="active"></div>
+        <div *ngIf="false" class="active">
+            <div>o</div>
+            <div>current_directory</div>
+            <div>v</div>
+        </div>
     </div>
     <div class="time">{{ time | date : 'MMM. d h:mm a' | lowercase }}</div>
     <div class="settings">

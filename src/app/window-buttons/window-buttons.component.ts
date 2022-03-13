@@ -15,12 +15,7 @@ export class WindowButtonsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onReduce(app: App) {
-    if(!app.reduced)
-    {
-      app.position = this.elementRef.nativeElement.offsetParent.style.transform;
-    }
-    
+  onReduce(app: App) {    
     app.reduced = true;
     app.focused = false;
   }
@@ -40,7 +35,7 @@ export class WindowButtonsComponent implements OnInit {
     app.reduced = false;
     app.maximized = false;
     app.focused = false;
-    app.position = '';
+    app.position = 'translate3d(150px, 150px, 0px)';
   }
 
 }

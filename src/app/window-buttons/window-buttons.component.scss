@@ -10,10 +10,13 @@
 
     .button
     {
-        width: 10px;
-        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        width: 20px;
+        height: 20px;
 
-        padding: 5px;
         margin: 13px 10px 13px 10px;
 
         border-radius: 100%;

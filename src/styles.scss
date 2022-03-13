@@ -2,8 +2,8 @@
 
 @font-face
 {
-    font-family: 'Ubuntu';
-    src: url("/assets/fonts/ubuntu-font-family/Ubuntu-L.ttf");
+  font-family: 'Ubuntu';
+  src: url("/assets/fonts/ubuntu-font-family/Ubuntu-R.ttf");
 }
 
 body
@@ -13,7 +13,7 @@ body
   color: whitesmoke;
   font-family: 'Ubuntu';
 
-  background: linear-gradient(45deg, #DD4814, #77216F, #5E2750, #AEA79F, #333333);
+  background: linear-gradient(45deg, #DD4814, #77216F, #5E2750);
 
   overflow: hidden;
 
@@ -22,32 +22,35 @@ body
 
 // ---------- state of window ---------- //
 
-.reduced
+.reduced_w
 {
   display: none !important;
 }
 
-.minimized
+.minimized_w
 {
-    width: 611px;
+  width: 611px;
+  height: 329px;
 
-    border-radius: 8px 8px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
 
-    box-shadow: 0px 0px 15px -10px black;
+  box-shadow: 0px 0px 15px -10px black;
 
-    .top_bar
-    {
-        border-radius: 6px 6px 0px 0px;
-    }
+  .top_bar
+  {
+    border-radius: 6px 6px 0px 0px;
+  }
 }
 
-.maximized
+.maximized_w
 {
   width: calc(100vw - 74px);
   height: calc(100vh - 29px);
+
+  box-shadow: none !important;
 }
 
-.focused
+.focused_w
 {
   box-shadow: 0px 0px 15px -2px black;
 
@@ -60,14 +63,19 @@ body
 
     .tools
     {
-        .single
-        {
-          background-color: rgba(72,72,72,255) !important;
-        }
-        .single:hover
-        {
-          background-color: rgba(78,78,78,255) !important;
-        }
+      .single
+      {
+        background-color: rgba(72,72,72,255) !important;
+      }
+      .single:hover
+      {
+        background-color: rgba(78,78,78,255) !important;
+      }
+
+      svg
+      {
+        fill: white !important;
+      }
     }
 
     .buttons
@@ -104,7 +112,20 @@ body
   }
 }
 
-.moving
+.unfocused_w
+{
+  
+}
+
+.moving_w
 {
     cursor: grabbing;
+}
+
+// ---------- state of shortcut ---------- //
+
+.focused_s
+{
+  border-radius: 5%;
+  background-color: rgba(255,255,255,10%);
 }

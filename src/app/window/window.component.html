@@ -1,8 +1,8 @@
 <div class="window" 
         *ngIf="app.opened" 
-        [ngClass]="{ 'maximized': app.maximized, 'minimized': !app.maximized, 'reduced': app.reduced, 'focused': app.focused, 'moving': moving }"
+        [ngClass]="{ 'maximized_w': app.maximized, 'minimized_w': !app.maximized, 'reduced_w': app.reduced, 'focused_w': app.focused, 'moving_w': moving }"
         (mousedown)="onFocus(app)" 
-        [ngStyle]="{ 'transform' : app.maximized ? 'none' : app.position }" 
+        [ngStyle]="{ 'transform': app.maximized ? 'translate3d(0px, 0px, 0px)' : app.position }"
         cdkDragBoundary="#background" 
         cdkDrag [cdkDragDisabled]="app.maximized" 
         (cdkDragStarted)="moving = true" 
@@ -10,11 +10,15 @@
 
     <div class="top_bar" cdkDragHandle>
         <!-- tools in top -->
-        <app-window-tools-bar [app]="app"></app-window-tools-bar>
+        <app-explorer-tools *ngIf="app.type === 'explorer'" [app]="app"></app-explorer-tools>
+        <app-terminal-tools *ngIf="app.title === 'terminal'"></app-terminal-tools>
     
         <!-- reduce, maximize & close buttons -->
         <app-window-buttons [app]="app"></app-window-buttons>
     </div>
-
-    <app-window-content></app-window-content>
+    <div class="content_container">
+        <app-explorer-content *ngIf="app.type === 'explorer'"></app-explorer-content>
+        <app-terminal-content *ngIf="app.title === 'terminal'"></app-terminal-content>
+        <app-identity-content *ngIf="app.title === 'identity'"></app-identity-content>
+    </div>
 </div>

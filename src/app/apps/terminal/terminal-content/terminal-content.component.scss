@@ -1,0 +1,30 @@
+.content
+{
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    background-color: rgba(48,10,36,255);
+
+    color: white;
+    
+    .info
+    {
+        padding-bottom: 10px;
+    }
+
+    .cmd
+    {
+        .user
+        {
+            color: rgba(77,141,17,255);
+        }
+        
+        .working_directory
+        {
+            color: rgba(50,82,149,255);
+        }
+    }
+}

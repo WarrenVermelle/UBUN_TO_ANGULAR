@@ -3,7 +3,7 @@
         <div *ngFor="let app of shortcutedApps" 
             class="{{ app.title }} shortcut" 
             (click)="onClickShortcut(app)" 
-            [ngClass]="{ 'opened': app.opened, 'reduced': app.reduced, 'focused': app.focused }">
+            [ngClass]="{ 'opened_s': app.opened, 'reduced_s': app.reduced, 'focused_s': app.focused }">
 
             <div class="dots">
                 <div [ngClass]="{ 'dot': app.opened }"></div>

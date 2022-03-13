@@ -1,0 +1,48 @@
+:host
+{
+    flex-grow: 1;
+}
+
+.tools
+{
+    display: flex;
+    align-items: center;
+
+    .single
+    {
+        width: 34px;
+        height: 32px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: rgba(62,62,62,255);
+        border: 1px solid rgba(37,37,37,255);
+        border-radius: 4px;
+
+        fill: grey;
+    }
+
+    .new
+    {
+        margin: 6px;
+    }
+
+    .center
+    {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+
+        .title
+        {
+
+        }
+    }
+
+    .search
+    {
+        margin: 6px;
+    }
+}

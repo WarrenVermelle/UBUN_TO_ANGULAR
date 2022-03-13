@@ -32,12 +32,14 @@ export class AppsService {
             reduced: false,
             focused: false,
             shortcuted: [{
-                shortcut: true,
-                shortcut_pos: 3,
-                desktop: false,
+                shortcut: false,
+                shortcut_pos: 0,
+                desktop: true,
                 desktop_pos: 0
             }],
-            position: '',
+            position: 'translate3d(150px, 150px, 0px)',
+            width: 611,
+            height: 329,
         },
         {
             id: 2,
@@ -62,7 +64,9 @@ export class AppsService {
                 desktop: false,
                 desktop_pos: 0
             }],
-            position: '',
+            position: 'translate3d(150px, 150px, 0px)',
+            width: 611,
+            height: 329,
         },
         {
             id: 3,
@@ -108,7 +112,9 @@ export class AppsService {
                 desktop: false,
                 desktop_pos: 0
             }],
-            position: '',
+            position: 'translate3d(150px, 150px, 0px)',
+            width: 611,
+            height: 329,
         },
         {
             id: 4,
@@ -135,7 +141,9 @@ export class AppsService {
                 desktop: false,
                 desktop_pos: 0
             }],
-            position: '',
+            position: 'translate3d(150px, 150px, 0px)',
+            width: 611,
+            height: 329,
         },
         {
             id: 5,
@@ -175,6 +183,8 @@ export class AppsService {
                 desktop_pos: 0
             }],
             position: '',
+            width: 0,
+            height: 0,
         }
     ]
 
@@ -191,7 +201,7 @@ export class AppsService {
         }
     }
 
-    getShortcutedApp(): App[] {
+    getShortcutedApps(): App[] {
         let shortcutedApps: App[] = [];
         for(const app of this.apps)
         {
@@ -201,6 +211,18 @@ export class AppsService {
             }
         }
         return shortcutedApps;
+    }
+
+    getDesktopedApps(): App[] {
+        let desktopedApps: App[] = [];
+        for(const app of this.apps)
+        {
+            if(app.shortcuted[0].desktop === true)
+            {
+                desktopedApps[app.shortcuted[0].desktop_pos] = app;
+            }
+        }
+        return desktopedApps;
     }
 
     unfocusAll(): void{
