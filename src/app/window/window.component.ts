@@ -23,6 +23,6 @@ export class WindowComponent implements OnInit {
 
   onFocus(app: App) {
     this.appsService.unfocusAll();
-    app.focused = true;
+    app.win_status.focused = true;
   }
 }

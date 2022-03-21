@@ -1,6 +1,6 @@
 @import '../../styles.scss';
 
-#taskbar
+#panel
 {
   height: 27px;
 
@@ -13,24 +13,25 @@
   padding-left: 12px;
   padding-right: 12px;
 
-  .left
+  #menu
   {
     display: flex;
+
     .active
     {
       display: flex;
     }
   }
-  
-  div:hover
-  {
-    color: white;
-  }
 
-  .settings
+  #indicators
   {
     width: auto;
     display: flex;
     justify-content: space-around;
   }
+}
+
+div:hover
+{
+  color: white;
 }

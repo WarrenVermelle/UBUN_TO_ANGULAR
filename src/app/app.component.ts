@@ -10,37 +10,37 @@ import { AppsService } from './services/apps.services';
 export class AppComponent implements OnInit{
 
   apps!: App[];
-  shortcutedApps!: App[];
-  desktopedApps!: App[];
+  launcherApps!: App[];
+  desktopApps!: App[];
   selected: boolean = false;
 
   constructor(private appsService: AppsService) {}
 
   ngOnInit(): void {
     this.apps = this.appsService.apps
-    this.shortcutedApps = this.appsService.getShortcutedApps();
-    this.desktopedApps = this.appsService.getDesktopedApps();
+    this.launcherApps = this.appsService.getLauncherApps();
+    this.desktopApps = this.appsService.getDesktopApps();
   }
 
-  onClickDesktopShortcut(shortcutedApp: App) {
-    if(shortcutedApp.opened === false) {
-      shortcutedApp.opened = true;
-      this.shortcutedApps.forEach(function(app) {
-        app.focused = false;
+  onClickDesktopShortcut(launcherApp: App) {
+    if(launcherApp.win_status.opened === false) {
+      launcherApp.win_status.opened = true;
+      this.launcherApps.forEach(function(app) {
+        app.win_status.focused = false;
       });
-      shortcutedApp.focused = true;
-      shortcutedApp.reduced = false;
-    } else if(shortcutedApp.reduced === true){
-      shortcutedApp.reduced = false;
-      this.shortcutedApps.forEach(function(app) {
-        app.focused = false;
+      launcherApp.win_status.focused = true;
+      launcherApp.win_status.reduced = false;
+    } else if(launcherApp.win_status.reduced === true){
+      launcherApp.win_status.reduced = false;
+      this.launcherApps.forEach(function(app) {
+        app.win_status.focused = false;
       });
-      shortcutedApp.focused = true;
+      launcherApp.win_status.focused = true;
     } else {
       this.apps.forEach(function(app) {
-        app.focused = false;
+        app.win_status.focused = false;
       });
-      shortcutedApp.focused = true;
+      launcherApp.win_status.focused = true;
     }
   }
 

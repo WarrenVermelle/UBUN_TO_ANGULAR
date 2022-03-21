@@ -1,10 +1,10 @@
 <div class="window" 
-        *ngIf="app.opened" 
-        [ngClass]="{ 'maximized_w': app.maximized, 'minimized_w': !app.maximized, 'reduced_w': app.reduced, 'focused_w': app.focused, 'moving_w': moving }"
+        *ngIf="app.win_status.opened" 
+        [ngClass]="{ 'maximized_w': app.win_status.maximized, 'minimized_w': !app.win_status.maximized, 'reduced_w': app.win_status.reduced, 'focused_w': app.win_status.focused, 'moving_w': moving }"
         (mousedown)="onFocus(app)" 
-        [ngStyle]="{ 'transform': app.maximized ? 'translate3d(0px, 0px, 0px)' : app.position }"
+        [ngStyle]="{ 'transform': app.win_status.maximized ? 'translate3d(0px, 0px, 0px)' : app.win_status.position }"
         cdkDragBoundary="#background" 
-        cdkDrag [cdkDragDisabled]="app.maximized" 
+        cdkDrag [cdkDragDisabled]="app.win_status.maximized" 
         (cdkDragStarted)="moving = true" 
         (cdkDragEnded)="moving = false">
 

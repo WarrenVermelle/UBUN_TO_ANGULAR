@@ -2,26 +2,24 @@ export class App {
 
     id!: number;
     title!: string;
-    icon!: [
-        viewBox: string,
-        d: string
-    ];
+    icon!: {
+        "viewbox": string,
+        "d": string
+    };
     type!: string;
-    content!: [{
-        text: string,
-        img: string
-    }];
-    opened!: boolean;
-    maximized!: boolean;
-    reduced!: boolean;
-    focused!: boolean;
-    shortcuted!: [{
-        shortcut: boolean,
-        shortcut_pos: number,
-        desktop: boolean,
-        desktop_pos: number
-    }];
-    position!: string;
-    width!: number;
-    height!: number;
+    win_status!: {
+        "opened": boolean,
+        "reduced": boolean,
+        "maximized": boolean,
+        "focused": boolean,
+        "position": string,
+        "width": number,
+        "height": number
+    };
+    shortcut_status!: {
+        "launcher": boolean,
+        "launcher_pos": number,
+        "desktop": boolean,
+        "desktop_pos": number
+    }
 }

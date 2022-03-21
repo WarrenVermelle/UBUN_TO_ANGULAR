@@ -1,0 +1,23 @@
+<div class="launcher">
+    <div *ngFor="let app of launcherApps" 
+        class="{{ app.title }} shortcut" 
+        (click)="onClickShortcut(app)" 
+        [ngClass]="{ 'opened_s': app.win_status.opened, 'reduced_s': app.win_status.reduced, 'focused_s': app.win_status.focused }">
+
+        <div class="dots">
+            <div [ngClass]="{ 'dot': app.win_status.opened }"></div>
+        </div>
+
+        <svg [attr.viewBox]="app.icon.viewbox">
+            <path [attr.d]="app.icon.d" />
+        </svg>
+
+        <p class="title">{{ app.title | titlecase }}</p>
+    </div>
+    <div class="all shortcut">
+        <svg [attr.viewBox]="apps[4].icon.viewbox">
+            <path [attr.d]="apps[4].icon.d" />
+        </svg>
+        <p class="title">Show Applications</p>
+    </div>
+</div>

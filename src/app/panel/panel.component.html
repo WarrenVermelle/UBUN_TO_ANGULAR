@@ -1,5 +1,5 @@
-<div id="taskbar">
-    <div class="left">
+<div id="panel">
+    <div id="menu">
         <div>Activities</div>
         <div *ngIf="false" class="active">
             <div>o</div>
@@ -7,8 +7,8 @@
             <div>v</div>
         </div>
     </div>
-    <div class="time">{{ time | date : 'MMM. d h:mm a' | lowercase }}</div>
-    <div class="settings">
+    <div id="datetime">{{ time | date : 'MMM. d h:mm a' | lowercase }}</div>
+    <div id="indicators">
         <div class="network">o</div>
         <div class="sound">o</div>
         <div class="shutdown">o</div>

@@ -16,26 +16,26 @@ export class WindowButtonsComponent implements OnInit {
   }
 
   onReduce(app: App) {    
-    app.reduced = true;
-    app.focused = false;
+    app.win_status.reduced = true;
+    app.win_status.focused = false;
   }
 
   onMaximize(app: App) {
-    if(!app.maximized)
+    if(!app.win_status.maximized)
     {
-      app.position = this.elementRef.nativeElement.offsetParent.style.transform;
+      app.win_status.position = this.elementRef.nativeElement.offsetParent.style.transform;
     }
 
-    app.maximized ? app.maximized = false : app.maximized = true;
-    app.focused = true;
+    app.win_status.maximized ? app.win_status.maximized = false : app.win_status.maximized = true;
+    app.win_status.focused = true;
   }
 
   onClose(app: App) {
-    app.opened = false;
-    app.reduced = false;
-    app.maximized = false;
-    app.focused = false;
-    app.position = 'translate3d(150px, 150px, 0px)';
+    app.win_status.opened = false;
+    app.win_status.reduced = false;
+    app.win_status.maximized = false;
+    app.win_status.focused = false;
+    app.win_status.position = 'translate3d(150px, 150px, 0px)';
   }
 
 }
