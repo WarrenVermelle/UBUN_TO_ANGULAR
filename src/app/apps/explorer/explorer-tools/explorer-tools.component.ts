@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { App } from 'src/app/models/apps.model';
+import { AppsService } from 'src/app/services/apps.services';
 
 @Component({
   selector: 'app-explorer-tools',
@@ -9,10 +10,14 @@ import { App } from 'src/app/models/apps.model';
 export class ExplorerToolsComponent implements OnInit {
 
   @Input() app!: App;
+  icons!: any;
 
-  constructor() { }
+  constructor( appsService: AppsService) { 
+    this.icons = appsService.icons;
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

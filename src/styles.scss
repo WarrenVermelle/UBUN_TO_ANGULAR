@@ -6,22 +6,7 @@
   src: url("/assets/fonts/ubuntu-font-family/Ubuntu-R.ttf");
 }
 
-body
-{
-  margin: 0;
-
-  color: whitesmoke;
-  font-family: 'Ubuntu';
-
-  background: linear-gradient(45deg, #DD4814, #77216F, #5E2750);
-
-  overflow: hidden;
-
-  cursor: default;
-}
-
 // ---------- state of window ---------- //
-
 .reduced_w
 {
   display: none !important;
@@ -29,8 +14,7 @@ body
 
 .minimized_w
 {
-  width: 611px;
-  height: 329px;
+  width: 609px;
 
   border-radius: 8px 8px 0px 0px;
 
@@ -44,10 +28,15 @@ body
 
 .maximized_w
 {
-  width: calc(100vw - 74px);
-  height: calc(100vh - 29px);
+  width: calc(100vw - 74px) !important;
+  height: calc(100vh - 29px) !important;
 
   box-shadow: none !important;
+
+  .content_container
+  {
+    height: 100% !important;
+  }
 }
 
 .focused_w
@@ -65,16 +54,16 @@ body
     {
       .single
       {
-        background-color: rgba(72,72,72,255) !important;
+        background-color: rgba(72,72,72,255);
       }
       .single:hover
       {
-        background-color: rgba(78,78,78,255) !important;
+        background-color: rgba(78,78,78,255);
       }
 
       svg
       {
-        fill: white !important;
+        fill: white;
       }
     }
 
@@ -112,14 +101,82 @@ body
   }
 }
 
-.unfocused_w
-{
-  
-}
-
 .moving_w
 {
     cursor: grabbing;
+}
+// ---------- --------------- ---------- //
+
+body
+{
+  margin: 0;
+
+  color: whitesmoke;
+  font-family: 'Ubuntu';
+
+  background: linear-gradient(45deg, #DD4814, #77216F, #5E2750);
+
+  overflow: hidden;
+
+  cursor: default;
+
+  .tools
+  {
+    display: flex;
+    align-items: center;
+
+    .single
+    {
+      width: 34px;
+      height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background-color: rgba(62,62,62,255);
+      border: 1px solid rgba(37,37,37,255);
+      border-radius: 4px;
+
+      fill: grey;
+    }
+
+    .couple
+    {
+      display: flex;
+
+      .left
+      {
+          border-radius: 4px 0px 0px 4px;
+      }
+      .right
+      {
+          border-top: 1px solid rgba(37,37,37,255);
+          border-right: 1px solid rgba(37,37,37,255);
+          border-bottom: 1px solid rgba(37,37,37,255);
+          border-left: none;
+
+          border-radius: 0px 4px 4px 0px;
+      }
+    }
+
+    .triple
+    {
+      
+    }
+
+    .center
+    {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+    }
+
+    .inactive
+    {
+      background-color: rgba(58,58,58,255) !important;
+    }
+  }
 }
 
 // ---------- state of shortcut ---------- //

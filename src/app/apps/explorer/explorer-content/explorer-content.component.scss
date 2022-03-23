@@ -1,3 +1,7 @@
+:host
+{
+    flex-grow: 1;
+}
 
 .content
 {
@@ -5,7 +9,9 @@
 
     height: 100%;
 
-    .left_panel
+    color: white;
+
+    .categories
     {
         width: fit-content;
         height: 100%;
@@ -19,50 +25,66 @@
         justify-content: space-between;
 
         overflow-y: scroll;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(136,136,136,255);
-
-        .categories
+        scrollbar-width: none;
+        
+        .category:first-child
         {
-            padding: 4px 0 4px 0;
+            margin-top: 4px;
+        }
 
-            .category
+        .category:last-child
+        {
+            margin-top: 4px;
+        }
+
+        .category
+        {
+            display: flex;
+
+            padding: 14px;
+
+            .icon
             {
-                display: flex;
-
-                padding: 14px;
-
-                .icon
-                {
-                    padding-right: 10px;
-                }
-
-                .title
-                {
-                    align-items: center;
-                }
+                padding-right: 10px;
             }
 
-            .category:hover
+            .title
             {
-                background-color: rgba(71,71,71,255);
+                align-items: center;
             }
+        }
 
-            .active
-            {
-                background-color: rgba(223,74,22,255);
-            }
+        .category:hover
+        {
+            background-color: rgba(71,71,71,255);
+        }
 
-            .active:hover
-            {
-                background-color: rgba(225,91,44,255);
-            }
+        .active
+        {
+            background-color: rgba(223,74,22,255);
+        }
+
+        .active:hover
+        {
+            background-color: rgba(225,91,44,255);
         }
     }
 
-    .central_panel
+    .categories:hover
     {
-        flex-grow: 1;
-        background-color: rgba(58,58,58,255);
+        scrollbar-width: thin;
+        scrollbar-color: rgba(136,136,136,255);
     }
+}
+
+.central_panel
+{
+    flex-grow: 1;
+    background-color: rgba(58,58,58,255);
+}
+
+
+svg
+{
+    fill: white;
 }

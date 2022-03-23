@@ -15,19 +15,25 @@ export class WindowButtonsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onReduce(app: App) {    
-    app.win_status.reduced = true;
-    app.win_status.focused = false;
+  onReduce(app: App) {
+    if(app.win_status.reducable === true)
+    {
+      app.win_status.reduced = true;
+      app.win_status.focused = false;
+    }
   }
 
   onMaximize(app: App) {
-    if(!app.win_status.maximized)
+    if(app.win_status.resizable === true)
     {
-      app.win_status.position = this.elementRef.nativeElement.offsetParent.style.transform;
+      if(!app.win_status.maximized)
+      {
+        app.win_status.position = this.elementRef.nativeElement.offsetParent.style.transform;
+      }
+  
+      app.win_status.maximized ? app.win_status.maximized = false : app.win_status.maximized = true;
+      app.win_status.focused = true;
     }
-
-    app.win_status.maximized ? app.win_status.maximized = false : app.win_status.maximized = true;
-    app.win_status.focused = true;
   }
 
   onClose(app: App) {

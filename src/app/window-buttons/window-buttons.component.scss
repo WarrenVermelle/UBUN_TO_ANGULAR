@@ -22,9 +22,15 @@
         border-radius: 100%;
     }
 
+    // unfocused
     .reduce, .maximize
     {
         fill: rgba(155,155,155,255);
+    }
+
+    .reduce.inactive, .maximize.inactive
+    {
+        fill: gray !important;
     }
 
     .reduce:hover, .maximize:hover
@@ -42,4 +48,5 @@
     {
         background-color: rgba(99,99,99,255);
     }
+    // -----
 }

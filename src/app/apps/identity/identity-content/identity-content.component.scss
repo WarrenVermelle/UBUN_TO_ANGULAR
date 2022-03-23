@@ -1,5 +1,30 @@
-div
+:host
+{
+    flex-grow: 1;
+}
+
+.intro
 {
     height: 100%;
+    padding: 0px 10px 0 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
     background-color: rgba(58,58,58,255);
+    color: white;
+
+    .intro_title
+    {
+        width: fit-content;
+        padding: 5px 5px 5px 5px;
+        background-color: rgba(223,74,22,255);
+    }
+
+    a
+    {
+        color: white;
+        text-decoration: none;
+    }
 }

@@ -1,6 +1,6 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WindowComponent } from './window/window.component';
@@ -13,6 +13,8 @@ import { ExplorerToolsComponent } from './apps/explorer/explorer-tools/explorer-
 import { TerminalToolsComponent } from './apps/terminal/terminal-tools/terminal-tools.component';
 import { TerminalContentComponent } from './apps/terminal/terminal-content/terminal-content.component';
 import { IdentityContentComponent } from './apps/identity/identity-content/identity-content.component';
+import { FirefoxContentComponent } from './apps/firefox/firefox-content/firefox-content.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 // locale time
 // import { registerLocaleData } from '@angular/common';
@@ -31,9 +33,13 @@ import { IdentityContentComponent } from './apps/identity/identity-content/ident
     TerminalToolsComponent,
     TerminalContentComponent,
     IdentityContentComponent,
+    FirefoxContentComponent,
+    
+    SafePipe
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     DragDropModule
   ],

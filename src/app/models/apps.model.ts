@@ -14,7 +14,10 @@ export class App {
         "focused": boolean,
         "position": string,
         "width": number,
-        "height": number
+        "height": number,
+        "resizable": boolean,
+        "reducable": boolean,
+        "openable": boolean
     };
     shortcut_status!: {
         "launcher": boolean,
