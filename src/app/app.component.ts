@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { App } from './models/apps.model';
+import { Window } from './models/window.model';
 import { AppsService } from './services/apps.services';
 
 @Component({
@@ -17,18 +18,26 @@ export class AppComponent implements OnInit{
 
   e!: any;
   isFullscreen: boolean = false;
+  focusedApp!: any;
 
-  constructor(private appsService: AppsService, @Inject(DOCUMENT) private document: any) { }
+  constructor(private appsService: AppsService, @Inject(DOCUMENT) private document: any) 
+  { 
+    
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.apps = this.appsService.apps
     this.launcherApps = this.appsService.getLauncherApps();
     this.desktopApps = this.appsService.getDesktopApps();
 
     this.e = document.documentElement;
+
+    this.focusedApp = this.appsService.getFocusedApp();
   }
 
-  onClickDesktopShortcut(launcherApp: App) {
+  onClickDesktopShortcut(launcherApp: App): void
+  {
     if(launcherApp.win_status.opened === false) 
     {
       launcherApp.win_status.opened = true;
@@ -49,7 +58,7 @@ export class AppComponent implements OnInit{
     }
   }
 
-  onClickDesktop(e: any)
+  onClickDesktop(e: any): void
   {
     if(e.target.classList[0] === 'desktop')
     {
@@ -63,13 +72,13 @@ export class AppComponent implements OnInit{
     }
   }
 
-  onRightClick(e: any)
+  onRightClick(e: any): boolean
   {
     // change to false at the end of project
     return true;
   }
 
-  onFullscreen()
+  onFullscreen(): void
   {
     if(this.isFullscreen === false)
     {
@@ -82,5 +91,10 @@ export class AppComponent implements OnInit{
       this.isFullscreen = false;
     }
     
+  }
+
+  onClick()
+  {
+    this.focusedApp = this.appsService.getFocusedApp();
   }
 }

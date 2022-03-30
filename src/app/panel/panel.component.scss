@@ -1,33 +1,101 @@
 @import '../../styles.scss';
 
+:host
+{
+  background-color: rgba(29,29,29,255);
+}
+
 #panel
 {
   height: 27px;
-
-  background-color: rgba(29,29,29,255);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding-left: 12px;
-  padding-right: 12px;
+  font-size: 0.95em;
 
   #menu
   {
+    width: auto;
+    height: 100%;
+
     display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    line-height: 100%;
+
+    .activities
+    {
+      height: calc(100% - 4px);
+      margin-top: 2px;
+      padding: 0 12px 0 12px;
+
+      display: flex;
+      align-items: center;
+      
+      border-bottom: 2px solid transparent;
+    }
 
     .active
     {
+      position: absolute;
+      left: 85px;
+
+      height: 100%;
+
+      margin-left: 20px;
       display: flex;
+      align-items: center;
+
+      fill: white;
     }
+  }
+
+  #datetime
+  {
+    width: auto;
+    height: calc(100% - 2px);
+
+    margin-left: 112px;
+    padding: 0 8px 0 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 100%;
+    fill: white;
+
+    border-bottom: 2px solid transparent;
   }
 
   #indicators
   {
     width: auto;
+    height: calc(100% - 2px);
+
+    padding: 0 8px 0 8px;
+
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 100%;
+    fill: white;
+
+    border-bottom: 2px solid transparent;
+
+    .indicator
+    {
+      width: 16px;
+      height: 16px;
+      padding: 0 5px 0 5px;
+    }
+  }
+
+  .selected
+  {
+    border-bottom: 2px solid rgba(223,74,22,1) !important;
   }
 }
 

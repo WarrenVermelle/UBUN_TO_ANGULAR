@@ -20,14 +20,14 @@ export class LauncherComponent implements OnInit {
     {
       if(launcherApp.win_status.opened === false) {
         launcherApp.win_status.opened = true;
-        this.launcherApps.forEach(function(app) {
+        this.apps.forEach(function(app) {
           app.win_status.focused = false;
         });
         launcherApp.win_status.focused = true;
         launcherApp.win_status.reduced = false;
       } else if(launcherApp.win_status.reduced === true){
         launcherApp.win_status.reduced = false;
-        this.launcherApps.forEach(function(app) {
+        this.apps.forEach(function(app) {
           app.win_status.focused = false;
         });
         launcherApp.win_status.focused = true;

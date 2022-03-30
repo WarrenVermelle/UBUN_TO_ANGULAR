@@ -3,7 +3,7 @@
 @font-face
 {
   font-family: 'Ubuntu';
-  src: url("/assets/fonts/ubuntu-font-family/Ubuntu-R.ttf");
+  src: url("/assets/fonts/ubuntu-font-family/Ubuntu-Th.ttf");
 }
 
 // ---------- state of window ---------- //
@@ -47,7 +47,7 @@
   
   .top_bar
   {
-    background-color: rgba(44,44,44,255);
+    background-color: rgba(48,44,44,255) !important;
     color: white;
 
     .tools
@@ -113,6 +113,7 @@ body
 
   color: whitesmoke;
   font-family: 'Ubuntu';
+  font-weight: 600;
 
   background: linear-gradient(45deg, #DD4814, #77216F, #5E2750);
 

@@ -1,5 +1,5 @@
-<div id="root" (contextmenu)="onRightClick($event)" >
-  <app-panel></app-panel>
+<div id="root" (contextmenu)="onRightClick($event)" (click)="onClick()" (dblclick)="onClick()" (mousedown)="onClick()">
+  <app-panel [app]="focusedApp"></app-panel>
   <div id="background">
     <app-launcher [apps]="apps" [launcherApps]="launcherApps"></app-launcher>
     <div id="desktop" (click)="onClickDesktop($event)">

@@ -1,17 +1,63 @@
 <div id="panel">
     <div id="menu">
-        <div>Activities</div>
-        <div *ngIf="false" class="active">
-            <div>o</div>
-            <div>current_directory</div>
-            <div>v</div>
+        <div class="activities">Activities</div>
+        <div *ngIf="app" class="active">
+            <div>0</div>
+            <div>{{ app.title | titlecase }}</div>
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                <path d="m13 6-5 5-5-5z" />
+            </svg>
         </div>
     </div>
     <div id="datetime">{{ time | date : 'MMM. d h:mm a' | lowercase }}</div>
-    <div id="indicators">
-        <div class="network">o</div>
-        <div class="sound">o</div>
-        <div class="shutdown">o</div>
-        <div class="dropdown">v</div>
+    <div id="indicators" (click)="select($event)" [ngClass]="{'selected': isSelected}">
+        <div class="indicator">
+            <svg height="16" width="16.003" xmlns="http://www.w3.org/2000/svg">
+                <g color="#000" font-family="sans-serif" font-weight="400" white-space="normal">
+                    <path d="M11.428 10c-.45.005-.78-.012-1.049.137a.673.673 0 0 0-.299.357c-.059.157-.08.341-.08.576v1.858c0 .235.022.421.08.578a.668.668 0 0 0 .3.355c.268.148.598.134 1.048.139h2.146c.45-.005.778.01 1.047-.139a.668.668 0 0 0 .3-.355c.058-.157.08-.343.08-.578V11.07c0-.235-.022-.42-.08-.576a.672.672 0 0 0-.3-.357c-.269-.15-.597-.132-1.047-.137h-.002zm-5-9c-.45.005-.78-.012-1.049.137a.673.673 0 0 0-.299.357c-.059.157-.08.341-.08.576v1.858c0 .235.022.421.08.578a.668.668 0 0 0 .3.355c.268.148.598.134 1.048.139h2.146c.45-.005.778.01 1.047-.139a.668.668 0 0 0 .3-.355c.058-.157.08-.343.08-.578V2.07c0-.235-.022-.42-.08-.576a.672.672 0 0 0-.3-.357C9.352.987 9.024 1.005 8.574 1h-.002zm-5 9c-.45.005-.78-.012-1.049.137a.673.673 0 0 0-.299.357c-.059.157-.08.341-.08.576v1.858c0 .235.022.421.08.578a.668.668 0 0 0 .3.355c.268.148.598.134 1.048.139h2.146c.45-.005.778.01 1.047-.139a.668.668 0 0 0 .3-.355c.058-.157.08-.343.08-.578V11.07c0-.235-.022-.42-.08-.576a.672.672 0 0 0-.3-.357c-.269-.15-.597-.132-1.047-.137h-.002z" overflow="visible" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none"/>
+                    <path d="M3.5 7c-.667 0-1.138.408-1.322.777C1.993 8.147 2 8.5 2 8.5v2h1v-2s.007-.147.072-.277C3.138 8.092 3.167 8 3.5 8h8c.333 0 .362.092.428.223.065.13.072.277.072.277v2h1v-2s.007-.353-.178-.723A1.485 1.485 0 0 0 11.5 7z" fill-rule="evenodd" overflow="visible" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal"/>
+                    <path d="M7.006 4.498l-.006 3 1 .004.006-3z" fill-rule="evenodd" overflow="visible" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal"/>
+                </g>
+            </svg>
+        </div>
+        <div class="indicator">
+            <svg style="display: none;" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.266 1.264l-13 13 .47.472 3.239-3.238L8 14.666V8.473l2.312-2.313c.467.542.737 1.227.737 1.947 0 .796-.316 1.559-.88 2.122l-.353.353.707.707.354-.353a4 4 0 0 0 1.172-2.829c0-.985-.377-1.923-1.03-2.654l1.422-1.422a5.994 5.994 0 0 1 1.608 4.076 5.999 5.999 0 0 1-1.758 4.243l-.354.353.707.707.354-.353a7 7 0 0 0 2.05-4.95 6.994 6.994 0 0 0-1.9-4.783l1.588-1.588zM8 1.334L4.5 5H1.871S1 5.894 1 8.002C1 10.11 1.871 11 1.871 11h1.422L8 6.293z" opacity=".5" fill="gray"/>
+            </svg>
+            <svg style="display: none;" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path d="M8 1.333L4.5 5H1.87S1 5.893 1 8.001C1 10.11 1.87 11 1.87 11H4.5L8 14.667z"/>
+                    <path d="M10.524 4.926l-.707.707.354.354a2.999 2.999 0 0 1 0 4.242l-.354.353.707.707.354-.353a4 4 0 0 0 0-5.656z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible" opacity=".5"/>
+                    <path d="M12.645 2.805l-.707.707.354.353a5.999 5.999 0 0 1 0 8.485l-.354.353.707.707.354-.353a7 7 0 0 0 0-9.899z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible" opacity=".5"/>
+                </g>
+            </svg>
+            <svg style="display: none;" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path d="M8 1.333L4.5 5H1.87S1 5.893 1 8.001C1 10.11 1.87 11 1.87 11H4.5L8 14.667z"/>
+                    <path d="M10.524 4.926l-.707.707.354.354a2.999 2.999 0 0 1 0 4.242l-.354.353.707.707.354-.353a4 4 0 0 0 0-5.656z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"/>
+                    <path d="M12.645 2.805l-.707.707.354.353a5.999 5.999 0 0 1 0 8.485l-.354.353.707.707.354-.353a7 7 0 0 0 0-9.899z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible" opacity=".5"/>
+                </g>
+            </svg>
+            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path d="M8 1.333L4.5 5H1.87S1 5.893 1 8.001C1 10.11 1.87 11 1.87 11H4.5L8 14.667z"/>
+                    <path d="M10.524 4.926l-.707.707.354.354a2.999 2.999 0 0 1 0 4.242l-.354.353.707.707.354-.353a4 4 0 0 0 0-5.656z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"/>
+                    <path d="M12.645 2.805l-.707.707.354.353a5.999 5.999 0 0 1 0 8.485l-.354.353.707.707.354-.353a7 7 0 0 0 0-9.899z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"/>
+                </g>
+            </svg>
+        </div>
+        <div class="indicator">
+            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                <g color="#000">
+                    <path d="M5 13V3h6v10z" overflow="visible" style="marker:none"/>
+                    <path d="M3 12.338c.01.839-.015 1.451.262 1.953.138.251.374.45.666.56.292.11.64.149 1.078.149H11c.439 0 .786-.039 1.078-.148.293-.11.526-.31.664-.56.277-.503.249-1.115.258-1.954V3.631c-.01-.839.02-1.453-.258-1.955a1.25 1.25 0 0 0-.664-.559C11.786 1.007 11.438 1 11 1h-1V0H6v1h-.994c-.438 0-.786.007-1.078.117-.292.11-.528.308-.666.559-.277.502-.252 1.116-.262 1.955v8.705zm1-.014V3.633c.01-.853.04-1.298.137-1.475.016-.028.057-.073.143-.105.06-.023.298-.053.726-.053H11c.428 0 .664.03.727.053.085.032.125.077.14.105.096.173.123.618.133 1.475v8.705c-.01.854-.037 1.298-.133 1.47-.015.03-.055.074-.14.106-.123.046-.349.086-.727.086H5.006c-.378 0-.604-.04-.726-.086-.086-.032-.127-.077-.143-.105-.098-.178-.126-.62-.137-1.485z" font-family="sans-serif" font-weight="400" overflow="visible" style="line-height:normal;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none" white-space="normal"/>
+                </g>
+            </svg>            
+        </div>
+        <div class="indicator">
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                <path d="m13 6-5 5-5-5z" />
+            </svg>
+        </div>
     </div>
 </div>
