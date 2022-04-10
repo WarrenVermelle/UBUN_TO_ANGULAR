@@ -1,6 +1,5 @@
 export class Window {
 
-    private _id!: number;
     private _reduced!: boolean;
     private _maximized!: boolean;
     private _focused!: boolean;
@@ -8,21 +7,14 @@ export class Window {
     private _width!: number;
     private _height!: number;
 
-    constructor(
-        id: number,
-        position: string) 
+    constructor() 
     {
-        this._id = id;
         this._reduced = false;
         this._maximized = false;
         this._focused = true;
-        this._position = position;
+        this._position = 'translate3d(150px, 150px, 0px)';
         this._width = 611;
         this._height = 329;
-    }
-
-    public get id(): number {
-        return this._id;
     }
 
     public get reduced(): boolean {

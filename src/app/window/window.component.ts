@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { App } from '../models/apps.model';
+import { Software } from '../models/software.model';
+import { Window } from '../models/window.model';
 import { AppsService } from '../services/apps.services';
 
 @Component({
@@ -9,20 +10,18 @@ import { AppsService } from '../services/apps.services';
 })
 export class WindowComponent implements OnInit {
 
-  @Input() app!: App;
-  apps!: App[];
+  @Input() software!: Software;
+  @Input() window!: Window;
   moving: boolean = false;
 
-  constructor(private appsService: AppsService) {
+  constructor(private appsService: AppsService) { }
 
-  }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
-    this.apps = this.appsService.apps;
-  }
-
-  onFocus(app: App) {
-    this.appsService.unfocusAll();
-    app.win_status.focused = true;
+  clickWindow(window: Window) {
+    this.appsService.unfocusAllSoftwares();
+    this.software.focused = true;
+    this.appsService.unfocusAllWindows();
+    window.focused = true;
   }
 }

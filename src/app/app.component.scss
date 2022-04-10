@@ -7,6 +7,8 @@
 
   display: flex;
   flex-direction: column;
+
+  -moz-user-select: none;
   
   #background
   {
@@ -33,15 +35,13 @@
         display: flex !important;
         flex-direction: column;
         align-items: center;
-
-        -moz-user-select: none;
         
         svg
         {
-            height: 44px;
-            width: 44px;
+          height: 44px;
+          width: 44px;
 
-            fill: white;
+          fill: white;
         }
       }
 

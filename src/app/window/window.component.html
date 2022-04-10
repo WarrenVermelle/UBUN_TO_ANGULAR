@@ -1,25 +1,26 @@
 <div class="window" 
-        *ngIf="app.win_status.opened" 
-        [ngClass]="{ 'maximized_w': app.win_status.maximized, 'minimized_w': !app.win_status.maximized, 'reduced_w': app.win_status.reduced, 'focused_w': app.win_status.focused, 'moving_w': moving }"
-        (mousedown)="onFocus(app)" 
-        [ngStyle]="{ 'transform': app.win_status.maximized ? 'translate3d(0px, 0px, 0px)' : app.win_status.position }"
+        [ngClass]="{ 'maximized_w': window.maximized, 'minimized_w': !window.maximized, 'reduced_w': window.reduced, 'focused_w': window.focused, 'moving_w': moving }"
+        (mousedown)="clickWindow(window)"
+        [ngStyle]="{ 'transform': window.maximized ? 'translate3d(0px, 0px, 0px)' : window.position }"
         cdkDragBoundary="#background" 
-        cdkDrag [cdkDragDisabled]="app.win_status.maximized" 
+        cdkDrag [cdkDragDisabled]="window.maximized"
         (cdkDragStarted)="moving = true" 
-        (cdkDragEnded)="moving = false">
+        (cdkDragEnded)="moving = false"
+        (click)="$event.stopPropagation();"
+        (contextmenu)="$event.stopPropagation(); false;">
 
     <div class="top_bar" cdkDragHandle>
         <!-- tools in top -->
-        <app-explorer-tools *ngIf="app.type === 'explorer'" [app]="app"></app-explorer-tools>
-        <app-terminal-tools *ngIf="app.title === 'terminal'"></app-terminal-tools>
+        <app-explorer-tools *ngIf="software.type === 'files'" [software]="software"></app-explorer-tools>
+        <app-terminal-tools *ngIf="software.type === 'terminal'"></app-terminal-tools>
     
         <!-- reduce, maximize & close buttons -->
-        <app-window-buttons [app]="app"></app-window-buttons>
+        <app-window-buttons [software]="software" [window]="window"></app-window-buttons>
     </div>
     <div class="content_container">
-        <app-explorer-content *ngIf="app.type === 'explorer'"></app-explorer-content>
-        <app-terminal-content *ngIf="app.title === 'terminal'"></app-terminal-content>
-        <app-identity-content *ngIf="app.title === 'identity'"></app-identity-content>
-        <app-firefox-content *ngIf="app.title === 'browser'"></app-firefox-content>
+        <app-explorer-content *ngIf="software.type === 'files'"></app-explorer-content>
+        <app-terminal-content *ngIf="software.type === 'terminal'"></app-terminal-content>
+        <app-identity-content *ngIf="software.type === 'identity'"></app-identity-content>
+        <app-firefox-content *ngIf="software.type === 'browser'"></app-firefox-content>
     </div>
 </div>

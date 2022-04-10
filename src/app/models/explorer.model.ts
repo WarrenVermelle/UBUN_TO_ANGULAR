@@ -4,15 +4,16 @@ export class Explorer {
 
     private _title!: string;
     private _icon!: Icon;
-    private _childs!: Array<Explorer>;
+    private _childs!: Array<Explorer> | undefined;
 
     constructor(
         title: string,
-        icon: Icon) 
+        icon: Icon,
+        childs?: Array<Explorer>) 
     {
         this._title = title;
         this._icon = icon;
-        this._childs = [];
+        this._childs = childs ? childs : [];
     }
 
     public get title(): string {
@@ -36,7 +37,10 @@ export class Explorer {
     }
 
     public set addChild(child: Explorer) {
-        this._childs.push(child);
+        if(typeof this._childs !== 'undefined') 
+        {
+            this._childs.push(child);
+        }
     }
 
     public set removeChild(child: Explorer) {

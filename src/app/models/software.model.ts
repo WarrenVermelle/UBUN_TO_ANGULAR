@@ -8,12 +8,15 @@ export class Software {
     private _multiple!: boolean;
     private _favorite!: boolean;
     private _favorite_order!: number;
+    private _shortcut!: boolean;
+    private _shortcut_order!: number;
     private _frequent!: boolean;
     private _frequent_order!: number;
     private _all_order!: number;
     private _openable!: boolean;
     private _resizable!: boolean;
     private _reducable!: boolean;
+    private _focused!: boolean;
     private _windows!: Array<Window>;
 
     constructor(
@@ -22,24 +25,30 @@ export class Software {
         multiple: boolean,
         favorite: boolean,
         favorite_order: number,
+        shortcut: boolean,
+        shortcut_order: number,
         frequent: boolean,
         frequent_order: number,
         all_order: number,
         openable: boolean,
         resizable: boolean,
-        reducable: boolean,) 
+        reducable: boolean,
+        focused: boolean) 
     {
         this._type = type;
         this._icon = icon;
         this._multiple = multiple;
         this._favorite = favorite;
         this._favorite_order = favorite_order;
+        this._shortcut = shortcut;
+        this._shortcut_order = shortcut_order;
         this._frequent = frequent;
         this._frequent_order = frequent_order;
         this._all_order = all_order;
         this._openable = openable;
         this._resizable = resizable;
         this._reducable = reducable;
+        this._focused = focused;
         this._windows = [];
     }
 
@@ -69,6 +78,22 @@ export class Software {
 
     public set favoriteOrder(favorite_order: number) {
         this._favorite_order = favorite_order;
+    }
+
+    public get shortcut(): boolean {
+        return this._shortcut;
+    }
+
+    public set shortcut(shortcut: boolean) {
+        this._shortcut = shortcut;
+    }
+
+    public get shortcutOrder(): number {
+        return this._shortcut_order;
+    }
+
+    public set shortcutOrder(shortcut_order: number) {
+        this._shortcut_order = shortcut_order;
     }
 
     public get frequent(): boolean {
@@ -111,6 +136,14 @@ export class Software {
         this._reducable = reducable;
     }
 
+    public get focused(): boolean {
+        return this._focused;
+    }
+
+    public set focused(focused: boolean) {
+        this._focused = focused;
+    }
+
     public get windows(): Window[] {
         return this._windows;
     }
@@ -120,7 +153,8 @@ export class Software {
     }
 
     public set removeWindow(window: Window) {
-
+        let index = this._windows.findIndex(x => window);
+        this._windows.splice(index);
     }
 
 }

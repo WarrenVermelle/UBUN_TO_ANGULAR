@@ -1,19 +1,25 @@
-<div id="root" (contextmenu)="onRightClick($event)" (click)="onClick()" (dblclick)="onClick()" (mousedown)="onClick()">
-  <app-panel [app]="focusedApp"></app-panel>
+<div id="root"(contextmenu)="false">
+  <app-panel></app-panel>
   <div id="background">
-    <app-launcher [apps]="apps" [launcherApps]="launcherApps"></app-launcher>
-    <div id="desktop" (click)="onClickDesktop($event)">
-      <div *ngFor="let app of desktopApps" class="desktop shortcut {{ app.title }}"
-      [ngClass]="{ 'selected': selected }"
-      (click)="$event.stopPropagation(); onClickDesktop($event)"
-      (dblclick)="onClickDesktopShortcut(app)">
+    <app-launcher [softwares]="softwares" [icons]="icons"></app-launcher>
+    <div id="desktop" (click)="leftClick($event, false)" (contextmenu)="rightClick($event)">
 
-        <svg class="desktop" [attr.viewBox]="app.icon.viewbox">
-          <path class="desktop" [attr.d]="app.icon.d" />
+      <div *ngFor="let shortcut of shortcuts" class="desktop shortcut {{ shortcut.type }}"
+            [ngClass]="{ 'selected': selected }"
+            (click)="leftClick($event, false)"
+            (dblclick)="leftClick($event, true, shortcut)">
+
+        <svg class="desktop" [attr.viewBox]="shortcut.icon.viewbox">
+          <path class="desktop" [attr.d]="shortcut.icon.path" />
         </svg>
-        <div class="desktop">{{ app.title }}</div>
+        
+        <div class="desktop">{{ shortcut.type }}</div>
       </div>
-      <app-window *ngFor="let app of apps" [app]="app"></app-window>
+
+      <div *ngFor="let software of softwares">
+        <app-window *ngFor="let window of software.windows" [software]="software" [window]="window"></app-window>
+      </div>
+      
     </div>
   </div>
 </div>

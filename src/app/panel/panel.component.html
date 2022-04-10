@@ -1,16 +1,18 @@
 <div id="panel">
-    <div id="menu">
+    <div id="menu" (click)="menu = !menu" [ngClass]="{'selected': menu}">
         <div class="activities">Activities</div>
-        <div *ngIf="app" class="active">
+        <!-- <div *ngIf="app" class="active">
             <div>0</div>
             <div>{{ app.title | titlecase }}</div>
             <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
                 <path d="m13 6-5 5-5-5z" />
             </svg>
-        </div>
+        </div> -->
     </div>
-    <div id="datetime">{{ time | date : 'MMM. d h:mm a' | lowercase }}</div>
-    <div id="indicators" (click)="select($event)" [ngClass]="{'selected': isSelected}">
+    <div id="datetime" (click)="datetime = !datetime" [ngClass]="{'selected': datetime}">
+        {{ time | date : 'MMM. d h:mm a' | lowercase }}
+    </div>
+    <div id="indicators" (click)="indicators = !indicators" [ngClass]="{'selected': indicators}">
         <div class="indicator">
             <svg height="16" width="16.003" xmlns="http://www.w3.org/2000/svg">
                 <g color="#000" font-family="sans-serif" font-weight="400" white-space="normal">

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { App } from '../models/apps.model';
+import { Icon } from '../models/icon.model';
+import { Software } from '../models/software.model';
+import { Window } from '../models/window.model';
 
 @Component({
   selector: 'app-launcher',
@@ -8,37 +10,41 @@ import { App } from '../models/apps.model';
 })
 export class LauncherComponent implements OnInit {
 
-  @Input() apps!: App[];
-  @Input() launcherApps!: App[];
+  @Input() softwares!: Software[];
+  @Input() icons!: Icon[];
 
   constructor() { }
 
   ngOnInit(): void { }
 
-  onClickShortcut(launcherApp: App) {
-    if(launcherApp.win_status.openable === true)
+  leftClickShortcut(software: Software) {
+    for (const software of this.softwares) {
+      software.focused = false;
+      if(software.windows.length > 0) {
+        for(const window of software.windows) {
+          window.focused = false;
+        }
+      }
+    }
+
+    if(software.openable)
     {
-      if(launcherApp.win_status.opened === false) {
-        launcherApp.win_status.opened = true;
-        this.apps.forEach(function(app) {
-          app.win_status.focused = false;
-        });
-        launcherApp.win_status.focused = true;
-        launcherApp.win_status.reduced = false;
-      } else if(launcherApp.win_status.reduced === true){
-        launcherApp.win_status.reduced = false;
-        this.apps.forEach(function(app) {
-          app.win_status.focused = false;
-        });
-        launcherApp.win_status.focused = true;
-      } else {
-        this.apps.forEach(function(app) {
-          app.win_status.focused = false;
-        });
-        launcherApp.win_status.focused = true;
+      if(software.windows.length > 0)
+      {
+        software.windows[0].reduced = false;
+        software.windows[0].focused = true;
+        software.focused = true;
+      }
+      else
+      {
+        software.addWindow = new Window();
+        software.focused = true;
       }
     }
   }
 
-
+  rightClickShortcut(software: Software) {
+    console.log('right click on ' + software.type);
+    return false;
+  }
 }

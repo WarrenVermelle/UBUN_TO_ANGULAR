@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { App } from './models/apps.model';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Icon } from './models/icon.model';
+import { Software } from './models/software.model';
 import { Window } from './models/window.model';
 import { AppsService } from './services/apps.services';
 
@@ -11,71 +12,59 @@ import { AppsService } from './services/apps.services';
 })
 export class AppComponent implements OnInit{
 
-  apps!: App[];
-  launcherApps!: App[];
-  desktopApps!: App[];
   selected: boolean = false;
 
   e!: any;
   isFullscreen: boolean = false;
   focusedApp!: any;
 
-  constructor(private appsService: AppsService, @Inject(DOCUMENT) private document: any) 
-  { 
-    
+  softwares!: Software[];
+  icons!: Icon[];
+  windows!: any;
+  shortcuts!: any;
+
+  constructor(private appsService: AppsService, @Inject(DOCUMENT) private document: any) {
+
   }
 
   ngOnInit(): void 
   {
-    this.apps = this.appsService.apps
-    this.launcherApps = this.appsService.getLauncherApps();
-    this.desktopApps = this.appsService.getDesktopApps();
-
     this.e = document.documentElement;
 
-    this.focusedApp = this.appsService.getFocusedApp();
+    // open identity window on start
+    this.appsService.softwares[0].addWindow = new Window();
+
+    this.softwares = this.appsService.softwares;
+    this.icons = this.appsService.icons;
+    this.shortcuts = this.appsService.shortcuts;
   }
 
-  onClickDesktopShortcut(launcherApp: App): void
+  leftClick(e: any, dbl: boolean, software?: Software): void
   {
-    if(launcherApp.win_status.opened === false) 
+    e.stopPropagation();
+    if(dbl && software) {
+      this.appsService.unfocusAllWindows();
+      software.addWindow = new Window();
+    }
+    else
     {
-      launcherApp.win_status.opened = true;
-      this.appsService.unfocusAll()
-      launcherApp.win_status.focused = true;
-      launcherApp.win_status.reduced = false;
-    } 
-    else if(launcherApp.win_status.reduced === true)
-    {
-      launcherApp.win_status.reduced = false;
-      this.appsService.unfocusAll()
-      launcherApp.win_status.focused = true;
-    } 
-    else 
-    {
-      this.appsService.unfocusAll()
-      launcherApp.win_status.focused = true;
+      console.log(e);
+      if(e.target.classList[0] === 'desktop')
+      {
+        this.selected = true;
+      }
+      
+      if(e.target.id === 'desktop')
+      {
+        this.selected = false;
+        this.appsService.unfocusAllWindows();
+      }
     }
   }
 
-  onClickDesktop(e: any): void
+  rightClick(e: any): any
   {
-    if(e.target.classList[0] === 'desktop')
-    {
-      this.selected = true;
-    }
-    
-    if(e.target.id === 'desktop')
-    {
-      this.selected = false;
-      this.appsService.unfocusAll();
-    }
-  }
-
-  onRightClick(e: any): boolean
-  {
-    // change to false at the end of project
-    return true;
+    console.log(e);
   }
 
   onFullscreen(): void
@@ -90,11 +79,5 @@ export class AppComponent implements OnInit{
       this.document.exitFullscreen();
       this.isFullscreen = false;
     }
-    
-  }
-
-  onClick()
-  {
-    this.focusedApp = this.appsService.getFocusedApp();
   }
 }

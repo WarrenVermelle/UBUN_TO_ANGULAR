@@ -1,22 +1,26 @@
 <div class="launcher">
-    <div *ngFor="let app of launcherApps" 
-        class="{{ app.title }} shortcut" 
-        (click)="onClickShortcut(app)" 
-        [ngClass]="{ 'opened_s': app.win_status.opened, 'reduced_s': app.win_status.reduced, 'focused_s': app.win_status.focused }">
+    <div *ngFor="let software of softwares">
+        <div *ngIf="software.favorite"
+            class="{{ software.type }} shortcut" 
+            (click)="leftClickShortcut(software)"
+            (contextmenu)="rightClickShortcut(software)"
+            [ngClass]="{ 'focused_s': software.focused }">
 
-        <div class="dots">
-            <div [ngClass]="{ 'dot': app.win_status.opened }"></div>
+            <div *ngIf="software.windows" class="dots">
+                <div *ngFor="let window of software.windows" class="dot"></div>
+            </div>
+
+            <svg [attr.viewBox]="software.icon.viewbox">
+                <path [attr.d]="software.icon.path" />
+            </svg>
+
+            <p class="title">{{ software.type | titlecase }}</p>
         </div>
-
-        <svg [attr.viewBox]="app.icon.viewbox">
-            <path [attr.d]="app.icon.d" />
-        </svg>
-
-        <p class="title">{{ app.title | titlecase }}</p>
     </div>
+
     <div class="all shortcut">
-        <svg [attr.viewBox]="apps[4].icon.viewbox">
-            <path [attr.d]="apps[4].icon.d" />
+        <svg [attr.viewBox]="icons[0].viewbox">
+            <path [attr.d]="icons[0].path" />
         </svg>
         <p class="title">Show Applications</p>
     </div>

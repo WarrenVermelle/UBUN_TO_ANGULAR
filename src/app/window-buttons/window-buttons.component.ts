@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { App } from '../models/apps.model';
+import { Software } from '../models/software.model';
+import { Window } from '../models/window.model';
 
 @Component({
   selector: 'app-window-buttons',
@@ -8,40 +9,43 @@ import { App } from '../models/apps.model';
 })
 export class WindowButtonsComponent implements OnInit {
 
-  @Input() app!: App;
+  @Input() software!: Software;
+  @Input() window!: Window;
 
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit(): void {
   }
 
-  onReduce(app: App) {
-    if(app.win_status.reducable === true)
+  reduce() {
+    if(this.software.reducable === true)
     {
-      app.win_status.reduced = true;
-      app.win_status.focused = false;
+      this.window.reduced = true;
+      this.software.focused = false;
+      this.window.focused = false;
     }
   }
 
-  onMaximize(app: App) {
-    if(app.win_status.resizable === true)
+  maximize() {
+    if(this.software.resizable === true)
     {
-      if(!app.win_status.maximized)
+      if(!this.window.maximized)
       {
-        app.win_status.position = this.elementRef.nativeElement.offsetParent.style.transform;
+        this.window.position = this.elementRef.nativeElement.offsetParent.style.transform;
       }
   
-      app.win_status.maximized ? app.win_status.maximized = false : app.win_status.maximized = true;
-      app.win_status.focused = true;
+      this.window.maximized ? this.window.maximized = false : this.window.maximized = true;
+      this.window.focused = true;
     }
   }
 
-  onClose(app: App) {
-    app.win_status.opened = false;
-    app.win_status.reduced = false;
-    app.win_status.maximized = false;
-    app.win_status.focused = false;
-    app.win_status.position = 'translate3d(150px, 150px, 0px)';
+  close() {
+    this.software.removeWindow = this.window;
+    this.software.focused = false;
+    this.window.reduced = false;
+    this.window.maximized = false;
+    this.window.focused = false;
+    this.window.position = 'translate3d(150px, 150px, 0px)';
   }
 
 }

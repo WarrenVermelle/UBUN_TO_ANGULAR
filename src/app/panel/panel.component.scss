@@ -18,32 +18,27 @@
   #menu
   {
     width: auto;
-    height: 100%;
+    height: calc(100% - 2px);
 
     display: flex;
     justify-content: space-between;
 
     align-items: center;
-    line-height: 100%;
+
+    border-bottom: 2px solid transparent;
 
     .activities
     {
-      height: calc(100% - 4px);
-      margin-top: 2px;
       padding: 0 12px 0 12px;
 
       display: flex;
-      align-items: center;
-      
-      border-bottom: 2px solid transparent;
+      align-items: center; 
     }
 
     .active
     {
       position: absolute;
       left: 85px;
-
-      height: 100%;
 
       margin-left: 20px;
       display: flex;
