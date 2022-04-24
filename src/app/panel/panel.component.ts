@@ -22,4 +22,8 @@ export class PanelComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  onClick(e: any) {
+    console.log(e.target);
+  }
 }

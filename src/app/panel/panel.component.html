@@ -1,5 +1,5 @@
 <div id="panel">
-    <div id="menu" (click)="menu = !menu" [ngClass]="{'selected': menu}">
+    <div id="menu" (click)="onClick($event); menu = !menu" [ngClass]="{'selected': menu}">
         <div class="activities">Activities</div>
         <!-- <div *ngIf="app" class="active">
             <div>0</div>
@@ -9,10 +9,10 @@
             </svg>
         </div> -->
     </div>
-    <div id="datetime" (click)="datetime = !datetime" [ngClass]="{'selected': datetime}">
+    <div id="datetime" (click)="onClick($event); datetime = !datetime" [ngClass]="{'selected': datetime}">
         {{ time | date : 'MMM. d h:mm a' | lowercase }}
     </div>
-    <div id="indicators" (click)="indicators = !indicators" [ngClass]="{'selected': indicators}">
+    <div id="indicators" (click)="onClick($event); indicators = !indicators" [ngClass]="{'selected': indicators}">
         <div class="indicator">
             <svg height="16" width="16.003" xmlns="http://www.w3.org/2000/svg">
                 <g color="#000" font-family="sans-serif" font-weight="400" white-space="normal">

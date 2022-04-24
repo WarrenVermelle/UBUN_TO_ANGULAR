@@ -48,7 +48,6 @@ export class AppComponent implements OnInit{
     }
     else
     {
-      console.log(e);
       if(e.target.classList[0] === 'desktop')
       {
         this.selected = true;

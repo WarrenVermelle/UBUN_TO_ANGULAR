@@ -17,7 +17,7 @@ export class WindowButtonsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  reduce() {
+  reduce(window: Window) {
     if(this.software.reducable === true)
     {
       this.window.reduced = true;
@@ -26,7 +26,7 @@ export class WindowButtonsComponent implements OnInit {
     }
   }
 
-  maximize() {
+  maximize(window: Window) {
     if(this.software.resizable === true)
     {
       if(!this.window.maximized)
@@ -39,8 +39,8 @@ export class WindowButtonsComponent implements OnInit {
     }
   }
 
-  close() {
-    this.software.removeWindow = this.window;
+  close(window: Window) {
+    this.software.removeWindow(window);
     this.software.focused = false;
     this.window.reduced = false;
     this.window.maximized = false;

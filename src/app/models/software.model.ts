@@ -152,9 +152,8 @@ export class Software {
         this._windows.push(window) 
     }
 
-    public set removeWindow(window: Window) {
-        let index = this._windows.findIndex(x => window);
-        this._windows.splice(index);
+    public removeWindow(window: Window) {
+        this._windows.splice(this._windows.indexOf(window),1);
     }
 
 }

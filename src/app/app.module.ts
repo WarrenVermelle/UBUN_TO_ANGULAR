@@ -15,6 +15,7 @@ import { TerminalContentComponent } from './apps/terminal/terminal-content/termi
 import { IdentityContentComponent } from './apps/identity/identity-content/identity-content.component';
 import { FirefoxContentComponent } from './apps/firefox/firefox-content/firefox-content.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { ContextmenuComponent } from './contextmenu/contextmenu.component';
 
 // locale time
 // import { registerLocaleData } from '@angular/common';
@@ -35,7 +36,8 @@ import { SafePipe } from './pipes/safe.pipe';
     IdentityContentComponent,
     FirefoxContentComponent,
     
-    SafePipe
+    SafePipe,
+          ContextmenuComponent
   ],
   imports: [
     BrowserModule,
