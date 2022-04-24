@@ -19,7 +19,9 @@
       <div *ngFor="let software of softwares">
         <app-window *ngFor="let window of software.windows" [software]="software" [window]="window"></app-window>
       </div>
-      
+
+      <app-contextmenu *ngIf="contextmenu"></app-contextmenu>
+      <div class="button" (click)="onFullscreen()" [ngClass]="{ 'active': isFullscreen }">Fullscreen</div>
     </div>
   </div>
 </div>

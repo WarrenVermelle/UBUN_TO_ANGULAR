@@ -23,6 +23,8 @@ export class AppComponent implements OnInit{
   windows!: any;
   shortcuts!: any;
 
+  contextmenu: boolean = false;
+
   constructor(private appsService: AppsService, @Inject(DOCUMENT) private document: any) {
 
   }
@@ -64,6 +66,7 @@ export class AppComponent implements OnInit{
   rightClick(e: any): any
   {
     console.log(e);
+    this.contextmenu = !this.contextmenu;
   }
 
   onFullscreen(): void

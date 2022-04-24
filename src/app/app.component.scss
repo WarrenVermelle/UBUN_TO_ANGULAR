@@ -56,6 +56,32 @@
         border-radius: 5%;
         background-color: rgba(255,255,255,0.2);
       }
+
+      .button
+      {
+        height: 20px;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: 25px;
+        bottom: 25px;
+        background-color: rgba(223,74,22,255);
+        border-radius: 10px;
+      }
+      .button:hover
+      {
+        background-color: rgba(233,88,37,255);
+      }
+
+      .active
+      {
+        background-color: rgba(87,87,87,255);
+      }
+      .active:hover
+      {
+        background-color: rgba(99,99,99,255);
+      }
     }
   }
 }
