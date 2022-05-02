@@ -12,7 +12,7 @@ export class Window {
         this._reduced = false;
         this._maximized = false;
         this._focused = true;
-        this._position = 'translate3d(150px, 150px, 0px)';
+        this._position = 'translate3d(1200px, 150px, 0px)'; //translate3d(456px, 250px, 0px)
         this._width = 611;
         this._height = 329;
     }

@@ -30,11 +30,13 @@
         height: 97px;
 
         margin: 1px;
-        padding-top: 5px;
+        padding-top: 8px;
 
         display: flex !important;
         flex-direction: column;
         align-items: center;
+
+        z-index: 2;
         
         svg
         {
@@ -60,7 +62,7 @@
       .button
       {
         height: 20px;
-        width: 100px;
+        width: 90px;
         display: flex;
         justify-content: center;
         position: absolute;
@@ -82,6 +84,25 @@
       {
         background-color: rgba(99,99,99,255);
       }
+
+      #dragzone
+      {
+        position: absolute;
+        left: -1000px;
+        width: 4000px;
+        height: 4000px;
+      }
     }
   }
 }
+
+// .ref
+// {
+//   height: 100vh;
+//   width: 100vw;
+//   position: absolute;
+//   background: url('../../ref/background.png');
+//   background-size: cover;
+//   opacity: 0.6;
+//   z-index: 100;
+// }

@@ -1,9 +1,9 @@
 <div id="root"(contextmenu)="false">
+  <div class="ref"></div>
   <app-panel></app-panel>
   <div id="background">
     <app-launcher [softwares]="softwares" [icons]="icons"></app-launcher>
     <div id="desktop" (click)="leftClick($event, false)" (contextmenu)="rightClick($event)">
-
       <div *ngFor="let shortcut of shortcuts" class="desktop shortcut {{ shortcut.type }}"
             [ngClass]="{ 'selected': selected }"
             (click)="leftClick($event, false)"
@@ -13,14 +13,16 @@
           <path class="desktop" [attr.d]="shortcut.icon.path" />
         </svg>
         
-        <div class="desktop">{{ shortcut.type }}</div>
+        <div class="desktop">{{ shortcut.type | titlecase }}</div>
       </div>
 
-      <div *ngFor="let software of softwares">
-        <app-window *ngFor="let window of software.windows" [software]="software" [window]="window"></app-window>
+      <div id="dragzone">
+        <div *ngFor="let software of softwares">
+          <app-window *ngFor="let window of software.windows" [software]="software" [window]="window"></app-window>
+        </div>
       </div>
 
-      <app-contextmenu *ngIf="contextmenu"></app-contextmenu>
+      <app-contextmenu *ngIf="contextmenu" [ngStyle]="{'transform': position}"></app-contextmenu>
       <div class="button" (click)="onFullscreen()" [ngClass]="{ 'active': isFullscreen }">Fullscreen</div>
     </div>
   </div>

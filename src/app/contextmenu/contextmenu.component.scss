@@ -1,4 +1,41 @@
-div
+.context-menu
 {
+    width: 220px;
+    height: 273px;
+
+    padding: 16px 0 16px 0;
+
     position: absolute;
+
+    color: rgba(black, 0.5);
+    background-color: white;
+
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    div
+    {
+        height: 29px;
+        line-height: 29px;
+        padding: 0 25px 0 25px;
+    }
+
+    .active
+    {
+        color: black;
+    }
+
+    .active:hover
+    {
+        background-color: rgba(230,230,230,255);
+    }
+
+    hr
+    {
+        color: rgba(black, 0.5);
+        width: 25%;
+    }
 }

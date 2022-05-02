@@ -14,9 +14,17 @@
     justify-content: space-evenly !important;
     line-height: 0 !important;
 
-    div
+    .explorer_icon
     {
-        padding: 0px 10px 0px 10px;
+        padding: 0 6px 0 8px;
+    }
+    .current_title
+    {
+        padding: 0 6px 0 8px;
+    }
+    .dropdown
+    {
+        padding: 0 8px 0 8px;
     }
 }
 

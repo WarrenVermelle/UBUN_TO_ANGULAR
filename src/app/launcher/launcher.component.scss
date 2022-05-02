@@ -3,7 +3,7 @@
 .launcher
 {
     height: 100%;
-
+    padding-top: 2px;
     position: sticky;
 
     background-color: rgba(29,29,29,70%);
@@ -13,12 +13,15 @@
 
     z-index: 99;
 
+    font-size: 0.9em;
+    font-weight: 600;
+
     .shortcut
     {
         width: 64px;
         height: 64px;
 
-        margin: 4px;
+        margin: 2px 4px 2px 4px;
 
         display: flex !important;
         flex-direction: column;
@@ -58,7 +61,8 @@
             position: absolute;
             left: 80px;
             background-color: black;
-            padding: 5px 9px 5px 9px;
+            padding: 6px 8px 6px 8px;
+            margin-top: 14px;
             border-radius: 7px;
             box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
             white-space: nowrap;
@@ -81,7 +85,7 @@
     .all
     {
         position: absolute;
-
-        bottom: 0;
+        padding-bottom: 2px;
+        bottom: 4px;
     }
 }

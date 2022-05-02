@@ -7,7 +7,7 @@
             [ngClass]="{ 'focused_s': software.focused }">
 
             <div *ngIf="software.windows" class="dots">
-                <div *ngFor="let window of software.windows" class="dot"></div>
+                <div *ngFor="let window of software.windows | slice:0:5" class="dot"></div>
             </div>
 
             <svg [attr.viewBox]="software.icon.viewbox">

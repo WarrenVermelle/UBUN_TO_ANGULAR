@@ -15,6 +15,7 @@
     {
         width: fit-content;
         height: 100%;
+        width: 161px;
 
         background-color: rgba(58,58,58,255);
 
@@ -41,16 +42,15 @@
         {
             display: flex;
 
-            padding: 14px;
-
             .icon
             {
-                padding-right: 10px;
+                padding: 10px 8px 9px 14px;
+                line-height: 1.1em;
             }
 
             .title
             {
-                align-items: center;
+                padding: 9px 0 0 0;
             }
         }
 

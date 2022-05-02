@@ -2,7 +2,7 @@
         [ngClass]="{ 'maximized_w': window.maximized, 'minimized_w': !window.maximized, 'reduced_w': window.reduced, 'focused_w': window.focused, 'moving_w': moving }"
         (mousedown)="clickWindow(window)"
         [ngStyle]="{ 'transform': window.maximized ? 'translate3d(0px, 0px, 0px)' : window.position }"
-        cdkDragBoundary="#background" 
+        cdkDragBoundary="#dragzone"
         cdkDrag [cdkDragDisabled]="window.maximized"
         (cdkDragStarted)="moving = true" 
         (cdkDragEnded)="moving = false"
