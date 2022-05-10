@@ -1,29 +1,37 @@
 <div id="root"(contextmenu)="false">
   <div class="ref"></div>
-  <app-panel></app-panel>
+  <app-panel [event]="onClickDesktop"></app-panel>
   <div id="background">
     <app-launcher [softwares]="softwares" [icons]="icons"></app-launcher>
     <div id="desktop" (click)="leftClick($event, false)" (contextmenu)="rightClick($event)">
-      <div *ngFor="let shortcut of shortcuts" class="desktop shortcut {{ shortcut.type }}"
-            [ngClass]="{ 'selected': selected }"
-            (click)="leftClick($event, false)"
-            (dblclick)="leftClick($event, true, shortcut)">
+      <div id="shortcuts" cdkDropList (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let shortcut of shortcuts" class="desktop shortcut {{ shortcut[0] }}"
+              [ngClass]="{ 'selected': shortcut[3] }"
+              (click)="leftClick($event, false, shortcut)"
+              (dblclick)="leftClick($event, true, shortcut)"
+              (contextmenu)="rightClick($event, shortcut)"
+              cdkDrag>
 
-        <svg class="desktop" [attr.viewBox]="shortcut.icon.viewbox">
-          <path class="desktop" [attr.d]="shortcut.icon.path" />
-        </svg>
-        
-        <div class="desktop">{{ shortcut.type | titlecase }}</div>
+          <svg class="desktop" [attr.viewBox]="shortcut[2].viewbox">
+            <path class="desktop" [attr.d]="shortcut[2].path" />
+          </svg>
+          
+          <div class="desktop">{{ shortcut[0] | titlecase }}</div>
+        </div>
       </div>
 
       <div id="dragzone">
         <div *ngFor="let software of softwares">
-          <app-window *ngFor="let window of software.windows" [software]="software" [window]="window"></app-window>
+          <app-window *ngFor="let window of software.windows" [software]="software" [window]="window" [explorer]="shortcuts"></app-window>
         </div>
       </div>
 
-      <app-contextmenu *ngIf="contextmenu" [ngStyle]="{'transform': position}"></app-contextmenu>
+      <app-contextmenu *ngIf="contextmenu" [ngStyle]="{'transform': position}" [softwares]="softwares"></app-contextmenu>
       <div class="button" (click)="onFullscreen()" [ngClass]="{ 'active': isFullscreen }">Fullscreen</div>
     </div>
   </div>
+</div>
+
+<div class="mobile">
+      <div>Sorry this website is not compatible yet with smartphone & tablet</div>
 </div>

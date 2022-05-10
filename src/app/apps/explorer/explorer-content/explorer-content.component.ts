@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-explorer-content',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExplorerContentComponent implements OnInit {
 
+  @Input() file!: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

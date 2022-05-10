@@ -15,10 +15,10 @@
         <div class="single current">
             <div class="explorer_icon">
                 <svg width="16" height="16">
-                    <path [attr.d]="icons[11].path" />
+                    <path [attr.transform]="explorerIcon.transform" [attr.d]="explorerIcon.path" />
                 </svg>                
             </div>
-            <div class="current_title">{{ software.type | titlecase }}</div>
+            <div class="current_title">{{ window.type | titlecase }}</div>
             <div class="dropdown">
                 <svg width="16" height="16">
                     <path [attr.d]="icons[7].path" />

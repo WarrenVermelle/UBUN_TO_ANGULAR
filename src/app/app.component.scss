@@ -9,6 +9,8 @@
   flex-direction: column;
 
   -moz-user-select: none;
+
+  position: fixed;
   
   #background
   {
@@ -20,43 +22,50 @@
     #desktop
     {
       display: flex;
+      flex-direction: column;
       flex-grow: 1;
 
-      .shortcut
+      #shortcuts
       {
-        position: absolute;
+        width: fit-content;
+        height: fit-content;
         
-        width: 120px;
-        height: 97px;
+        z-index: 1;
 
-        margin: 1px;
-        padding-top: 8px;
-
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-
-        z-index: 2;
-        
-        svg
+        .shortcut
         {
-          height: 44px;
-          width: 44px;
-
-          fill: white;
+          // position: absolute;
+          
+          width: 120px;
+          height: 97px;
+  
+          margin: 1px;
+          padding-top: 8px;
+  
+          display: flex !important;
+          flex-direction: column;
+          align-items: center;
+          
+          svg
+          {
+            height: 44px;
+            width: 44px;
+  
+            fill: white;
+          }
         }
-      }
-
-      .selected
-      {
-        border-radius: 5%;
-        background-color: rgba(223,74,22,0.7) !important;
-      }
-
-      .shortcut:hover
-      {
-        border-radius: 5%;
-        background-color: rgba(255,255,255,0.2);
+  
+        .selected
+        {
+          border-radius: 5%;
+          background-color: rgba(223,74,22,0.7) !important;
+        }
+  
+        .shortcut:hover
+        {
+          border-radius: 5%;
+          background-color: rgba(255,255,255,0.2);
+        }
       }
 
       .button
@@ -106,3 +115,49 @@
 //   opacity: 0.6;
 //   z-index: 100;
 // }
+
+.mobile
+{
+  display: none;
+}
+
+@media (max-width: 800px), (max-height: 600px) {
+  #root
+  {
+    display: none;
+  }
+
+  .mobile
+  {
+    display: block;
+    background-color: rgba(58,58,58,255);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 50px 10px 0px 10px;  
+    div
+    {
+      text-align: center;
+    }
+  }
+}
+
+.cdk-drag-preview
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: whitesmoke;
+  color: whitesmoke;
+  font-family: 'Ubuntu';
+  font-weight: 600;
+  
+  svg
+  {
+    height: 44px;
+    width: 44px;
+
+    fill: white;
+  }
+}

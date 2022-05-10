@@ -6,15 +6,17 @@ export class Window {
     private _position!: string;
     private _width!: number;
     private _height!: number;
+    private _type?: string;
 
-    constructor() 
+    constructor(type?: string) 
     {
         this._reduced = false;
         this._maximized = false;
         this._focused = true;
-        this._position = 'translate3d(1200px, 150px, 0px)'; //translate3d(456px, 250px, 0px)
+        this._position = 'translate3d(1170px, 100px, 0px)'; //translate3d(456px, 250px, 0px)
         this._width = 611;
         this._height = 329;
+        this._type = type;
     }
 
     public get reduced(): boolean {
@@ -63,6 +65,18 @@ export class Window {
 
     public set height(height: number) {
         this._height = height;
+    }
+
+    public get type(): string {
+        if(this._type)
+        {
+            return this._type;
+        }
+        return ''
+    }
+
+    public set type(type: string) {
+        this._type = type;
     }
 
 }

@@ -11,14 +11,14 @@
 
     <div class="top_bar" cdkDragHandle>
         <!-- tools in top -->
-        <app-explorer-tools *ngIf="software.type === 'files'" [software]="software"></app-explorer-tools>
+        <app-explorer-tools *ngIf="software.type === 'files'" [software]="software" [window]="window"></app-explorer-tools>
         <app-terminal-tools *ngIf="software.type === 'terminal'"></app-terminal-tools>
     
         <!-- reduce, maximize & close buttons -->
         <app-window-buttons [software]="software" [window]="window"></app-window-buttons>
     </div>
     <div class="content_container">
-        <app-explorer-content *ngIf="software.type === 'files'"></app-explorer-content>
+        <app-explorer-content *ngIf="software.type === 'files'" [file]="window.type"></app-explorer-content>
         <app-terminal-content *ngIf="software.type === 'terminal'"></app-terminal-content>
         <app-identity-content *ngIf="software.type === 'identity'"></app-identity-content>
         <app-firefox-content *ngIf="software.type === 'browser'"></app-firefox-content>

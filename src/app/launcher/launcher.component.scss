@@ -89,3 +89,24 @@
         bottom: 4px;
     }
 }
+
+.cdk-drag-preview
+{
+    svg
+    {
+        height: 44px;
+        width: 44px;
+
+        fill: white;
+    }
+
+    .title
+    {
+        display: none;
+    }
+
+    .dots
+    {
+        display: none;
+    }
+}

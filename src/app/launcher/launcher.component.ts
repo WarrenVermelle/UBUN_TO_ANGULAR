@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Icon } from '../models/icon.model';
 import { Software } from '../models/software.model';
@@ -12,6 +13,7 @@ export class LauncherComponent implements OnInit {
 
   @Input() softwares!: Software[];
   @Input() icons!: Icon[];
+  @Input() file!: string;
 
   constructor() { }
 
@@ -31,13 +33,21 @@ export class LauncherComponent implements OnInit {
     {
       if(software.windows.length > 0)
       {
-        software.windows[0].reduced = false;
-        software.windows[0].focused = true;
+        software.windows.forEach(window => window.reduced = false);
+        software.windows[software.windows.length-1].focused = true;
         software.focused = true;
       }
       else
       {
-        software.addWindow = new Window();
+        if(software.type === 'files')
+        {
+          software.addWindow = new Window('home');
+        }
+        else
+        {
+          software.addWindow = new Window();
+        }
+        
         software.focused = true;
       }
     }
@@ -46,5 +56,13 @@ export class LauncherComponent implements OnInit {
   rightClickShortcut(software: Software) {
     console.log('right click on ' + software.type);
     return false;
+  }
+
+  openAllApps() {
+    console.log('show all apps');
+  }
+
+  drop(event: CdkDragDrop<any>) {
+    moveItemInArray(this.softwares, event.previousIndex, event.currentIndex);
   }
 }

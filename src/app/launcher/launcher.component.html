@@ -1,10 +1,11 @@
-<div class="launcher">
+<div class="launcher" cdkDropList (cdkDropListDropped)="drop($event)">
     <div *ngFor="let software of softwares">
         <div *ngIf="software.favorite"
             class="{{ software.type }} shortcut" 
             (click)="leftClickShortcut(software)"
             (contextmenu)="rightClickShortcut(software)"
-            [ngClass]="{ 'focused_s': software.focused }">
+            [ngClass]="{ 'focused_s': software.focused }"
+            cdkDrag>
 
             <div *ngIf="software.windows" class="dots">
                 <div *ngFor="let window of software.windows | slice:0:5" class="dot"></div>
@@ -18,7 +19,7 @@
         </div>
     </div>
 
-    <div class="all shortcut">
+    <div class="all shortcut" (click)="openAllApps()">
         <svg [attr.viewBox]="icons[0].viewbox">
             <path [attr.d]="icons[0].path" />
         </svg>

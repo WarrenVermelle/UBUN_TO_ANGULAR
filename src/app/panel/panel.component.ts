@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-panel',
@@ -10,9 +11,11 @@ export class PanelComponent implements OnInit {
   date = new Date();
   time!: number;
 
-  menu: boolean = false;
-  datetime: boolean = false;
-  indicators: boolean = false;
+  selected!: string;
+
+  private eventSubscription!: Subscription;
+
+  @Input() event!: Observable<void>;
 
   constructor() {
     setInterval(() => {
@@ -21,9 +24,28 @@ export class PanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.eventSubscription = this.event.subscribe(() => this.selected = '');
   }
 
-  onClick(e: any) {
-    console.log(e.target);
+  ngOnDestroy() {
+    this.eventSubscription.unsubscribe();
+  }
+
+  onClick(indicator?: string) {
+    if(indicator === 'menu')
+    {
+      this.selected = 'menu';
+      console.log('open menu panel');
+    }
+    else if(indicator === 'datetime')
+    {
+      this.selected = 'datetime';
+      console.log('open datetime panel');
+    }
+    else
+    {
+      this.selected = 'indicators';
+      console.log('open indicators panel');
+    }
   }
 }
