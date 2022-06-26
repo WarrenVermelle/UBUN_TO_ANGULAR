@@ -11,7 +11,7 @@
               (click)="leftClick($event, false, shortcut)"
               (dblclick)="leftClick($event, true, shortcut)"
               (contextmenu)="rightClick($event, shortcut)"
-              cdkDrag>
+              >
 
           <svg class="desktop" [attr.viewBox]="shortcut[2].viewbox">
             <path class="desktop" [attr.d]="shortcut[2].path" />
@@ -36,7 +36,7 @@
         </div>
       </div>
       
-      <app-contextmenu *ngIf="contextmenu" [ngStyle]="{'transform': position}"></app-contextmenu>
+      <app-contextmenu *ngIf="contextmenu" [ngStyle]="{'transform': position}" [softwares]="softwares"></app-contextmenu>
       <div class="button" (click)="onFullscreen()" [ngClass]="{ 'active': isFullscreen }">Fullscreen</div>
     </div>
   </div>

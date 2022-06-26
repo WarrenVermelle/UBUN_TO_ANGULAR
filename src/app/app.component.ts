@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Icon } from './models/icon.model';
 import { Software } from './models/software.model';
@@ -40,13 +40,17 @@ export class AppComponent implements OnInit {
     this.e = document.documentElement;
 
     // open identity window on start
-    this.appsService.softwares[0].addWindow = new Window();
+    this.appsService.softwares[0].addWindow = new Window(false, false);
 
     this.softwares = this.appsService.softwares;
     this.icons = this.appsService.icons;
     this.shortcuts = this.appsService.explorer[2][4][0][4];
 
     this.focusedSoftware = this.appsService.getFocusedSoftware();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes.softwares)
   }
 
   resetSelected() {
@@ -63,7 +67,7 @@ export class AppComponent implements OnInit {
       const software = this.softwares.find(x => x.type === shortcut[1]);
       if(software)
       {
-        software.addWindow = new Window(shortcut[0]);
+        software.addWindow = new Window(true, true, shortcut[0]);
         software.focused = true;
         this.focusedSoftware = software;
       }

@@ -13,7 +13,12 @@
         </div>
     </div>
     <div *ngIf="selected === 'menu'" class="context_menu" (click)="onClick('search')">
-        <input type="text" placeholder="search" (click)="$event.stopPropagation()">
+        <input type="text" placeholder="Type to search" (click)="$event.stopPropagation()">
+        <p>Frequently used applications will appear here</p>
+        <div class="apps">
+            <div>Frequent</div>
+            <div>All</div>
+        </div>
     </div>
 </div>
 <!-- datetime -->

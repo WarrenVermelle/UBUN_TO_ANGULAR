@@ -43,16 +43,17 @@ export class WindowComponent implements OnInit {
 
 
   reduce(window: Window) {
-    if(this.software.reducable === true)
+    if(this.window.reducable === true)
     {
       this.window.reduced = true;
       this.software.focused = false;
       this.window.focused = false;
+      this.focusChanged.emit(this.software);
     }
   }
 
   maximize(window: Window) {
-    if(this.software.resizable === true)
+    if(this.window.resizable === true)
     {
       if(!this.window.maximized)
       {

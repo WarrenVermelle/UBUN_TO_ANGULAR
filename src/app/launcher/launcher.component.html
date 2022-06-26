@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="all shortcut" (click)="openAllApps()">
+    <div class="all shortcut" [ngClass]="{ 'selected': selected }" (click)="openAllApps(); selected = !selected">
         <svg [attr.viewBox]="icons[0].viewbox">
             <path [attr.d]="icons[0].path" />
         </svg>

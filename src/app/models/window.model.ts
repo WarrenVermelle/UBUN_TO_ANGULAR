@@ -1,5 +1,7 @@
 export class Window {
 
+    private _resizable!: boolean;
+    private _reducable!: boolean;
     private _reduced!: boolean;
     private _maximized!: boolean;
     private _focused!: boolean;
@@ -8,8 +10,13 @@ export class Window {
     private _height!: number;
     private _type?: string;
 
-    constructor(type?: string) 
+    constructor(
+        resizable: boolean,
+        reducable: boolean,
+        type?: string) 
     {
+        this._resizable = resizable;
+        this._reducable = reducable;
         this._reduced = false;
         this._maximized = false;
         this._focused = true;
@@ -17,6 +24,14 @@ export class Window {
         this._width = 611;
         this._height = 329;
         this._type = type;
+    }
+
+    public get resizable(): boolean {
+        return this._resizable;
+    }
+
+    public get reducable(): boolean {
+        return this._reducable;
     }
 
     public get reduced(): boolean {

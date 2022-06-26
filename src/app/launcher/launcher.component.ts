@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs';
 import { Icon } from '../models/icon.model';
 import { Software } from '../models/software.model';
 import { Window } from '../models/window.model';
@@ -11,6 +10,8 @@ import { Window } from '../models/window.model';
   styleUrls: ['./launcher.component.scss']
 })
 export class LauncherComponent implements OnInit {
+
+  selected: boolean = false;
 
   @Input() softwares!: Software[];
   @Input() icons!: Icon[];
@@ -24,7 +25,7 @@ export class LauncherComponent implements OnInit {
   ngOnInit(): void { }
 
   leftClickShortcut(software: Software) {
-    this.focusChanged.emit(software);
+    
     this.selectReset.emit('');
     for (const software of this.softwares) {
       software.focused = false;
@@ -37,6 +38,7 @@ export class LauncherComponent implements OnInit {
 
     if(software.openable)
     {
+      this.focusChanged.emit(software);
       if(software.windows.length > 0)
       {
         software.windows.forEach(window => window.reduced = false);
@@ -47,11 +49,15 @@ export class LauncherComponent implements OnInit {
       {
         if(software.type === 'files')
         {
-          software.addWindow = new Window('home');
+          software.addWindow = new Window(true, true, 'home');
+        }
+        else if(software.type === 'identity')
+        {
+          software.addWindow = new Window(false, false);
         }
         else
         {
-          software.addWindow = new Window();
+          software.addWindow = new Window(true, true);
         }
         
         software.focused = true;
