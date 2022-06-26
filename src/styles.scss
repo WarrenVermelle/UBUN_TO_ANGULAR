@@ -145,7 +145,15 @@ body
       border: 1px solid rgba(37,37,37,255);
       border-radius: 4px;
 
-      fill: grey;
+      fill: gray;
+    }
+
+    .single.inactive
+    {
+      svg
+      {
+        fill: gray;
+      }
     }
 
     .couple
@@ -154,16 +162,16 @@ body
 
       .left
       {
-          border-radius: 4px 0px 0px 4px;
+        border-radius: 4px 0px 0px 4px;
       }
       .right
       {
-          border-top: 1px solid rgba(37,37,37,255);
-          border-right: 1px solid rgba(37,37,37,255);
-          border-bottom: 1px solid rgba(37,37,37,255);
-          border-left: none;
+        border-top: 1px solid rgba(37,37,37,255);
+        border-right: 1px solid rgba(37,37,37,255);
+        border-bottom: 1px solid rgba(37,37,37,255);
+        border-left: none;
 
-          border-radius: 0px 4px 4px 0px;
+        border-radius: 0px 4px 4px 0px;
       }
     }
 

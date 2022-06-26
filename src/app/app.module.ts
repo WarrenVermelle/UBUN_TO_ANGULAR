@@ -8,7 +8,6 @@ import { LauncherComponent } from './launcher/launcher.component';
 import { PanelComponent } from './panel/panel.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ExplorerContentComponent } from './apps/explorer/explorer-content/explorer-content.component';
-import { WindowButtonsComponent } from './window-buttons/window-buttons.component';
 import { ExplorerToolsComponent } from './apps/explorer/explorer-tools/explorer-tools.component';
 import { TerminalToolsComponent } from './apps/terminal/terminal-tools/terminal-tools.component';
 import { TerminalContentComponent } from './apps/terminal/terminal-content/terminal-content.component';
@@ -29,7 +28,6 @@ import { ContextmenuComponent } from './contextmenu/contextmenu.component';
     LauncherComponent,
     PanelComponent,
     ExplorerContentComponent,
-    WindowButtonsComponent,
     ExplorerToolsComponent,
     TerminalToolsComponent,
     TerminalContentComponent,

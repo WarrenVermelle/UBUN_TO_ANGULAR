@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Software } from '../models/software.model';
 import { Window } from '../models/window.model';
 import { AppsService } from '../services/apps.services';
@@ -19,7 +19,7 @@ export class WindowComponent implements OnInit {
   @Output() focusChanged: EventEmitter<Software> = new EventEmitter();
   @Output() resetSelected: EventEmitter<string> = new EventEmitter();
 
-  constructor(private appsService: AppsService) { }
+  constructor(private appsService: AppsService, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     
@@ -40,8 +40,38 @@ export class WindowComponent implements OnInit {
     this.resetSelected.emit('none');
   }
 
-  closed(e: any)
-  {
+
+
+  reduce(window: Window) {
+    if(this.software.reducable === true)
+    {
+      this.window.reduced = true;
+      this.software.focused = false;
+      this.window.focused = false;
+    }
+  }
+
+  maximize(window: Window) {
+    if(this.software.resizable === true)
+    {
+      if(!this.window.maximized)
+      {
+        this.window.position = this.elementRef.nativeElement.childNodes[0].style.transform
+      }
+  
+      this.window.maximized ? this.window.maximized = false : this.window.maximized = true;
+      this.window.focused = true;
+    }
+  }
+
+  close(window: Window) {
+    this.software.removeWindow(window);
+    this.software.focused = false;
+    this.window.reduced = false;
+    this.window.maximized = false;
+    this.window.focused = false;
+    this.window.position = 'translate3d(150px, 150px, 0px)';
     this.focusChanged.emit(this.software);
   }
+
 }
