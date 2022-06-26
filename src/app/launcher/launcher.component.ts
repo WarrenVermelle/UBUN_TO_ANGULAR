@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Icon } from '../models/icon.model';
 import { Software } from '../models/software.model';
 import { Window } from '../models/window.model';
@@ -15,11 +16,16 @@ export class LauncherComponent implements OnInit {
   @Input() icons!: Icon[];
   @Input() file!: string;
 
+  @Output() focusChanged: EventEmitter<Software> = new EventEmitter();
+  @Output() selectReset: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void { }
 
   leftClickShortcut(software: Software) {
+    this.focusChanged.emit(software);
+    this.selectReset.emit('');
     for (const software of this.softwares) {
       software.focused = false;
       if(software.windows.length > 0) {

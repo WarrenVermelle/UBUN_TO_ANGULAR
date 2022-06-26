@@ -1,17 +1,48 @@
-<div id="panel">
-    <div id="menu" (click)="onClick('menu')" [ngClass]="{'selected': selected === 'menu'}">
-        <div class="activities">Activities</div>
-        <!-- <div *ngIf="app" class="active">
-            <div>0</div>
-            <div>{{ app.title | titlecase }}</div>
+<!-- menu -->
+<div class="tab">
+    <div id="menu" [ngClass]="{'selected': selected === 'menu'}">
+        <div class="activities" (click)="onClick('menu')">Activities</div>
+        <div *ngIf="focusedSoftware !== null" class="active">
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="focusedSoftware.icon.viewbox">
+                <path [attr.d]="focusedSoftware.icon.path" />
+            </svg>
+            <div>{{ focusedSoftware.type | titlecase }}</div>
             <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
                 <path d="m13 6-5 5-5-5z" />
             </svg>
-        </div> -->
+        </div>
     </div>
+    <div *ngIf="selected === 'menu'" class="context_menu" (click)="onClick('search')">
+        <input type="text" placeholder="search" (click)="$event.stopPropagation()">
+    </div>
+</div>
+<!-- datetime -->
+<div class="tab">
     <div id="datetime" (click)="onClick('datetime')" [ngClass]="{'selected': selected === 'datetime'}">
         {{ time | date : 'MMM. d h:mm a' | lowercase }}
     </div>
+    <div class="context" *ngIf="selected === 'datetime'">
+        <div class="arrow"></div>
+        <div class="context_datetime">
+            <div class="notifications">
+                <div class="center">
+                    <svg></svg>
+                    <p>No Notifications</p>
+                </div>
+                <div class="disturb">
+                    <p>Do Not Disturb</p>
+                    <input type="checkbox" class="switch">
+                </div>
+            </div>
+            <hr>
+            <div class="calendar">
+                <p>calendar</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- indicators -->
+<div class="tab">
     <div id="indicators" (click)="onClick('indicators')" [ngClass]="{'selected': selected === 'indicators'}">
         <div class="indicator">
             <svg height="16" width="16.003" xmlns="http://www.w3.org/2000/svg">
@@ -62,4 +93,98 @@
             </svg>
         </div>
     </div>
+    <div class="context" *ngIf="selected === 'indicators'">
+        <div class="arrow"></div>
+        <div class="context_indicators">
+            <div class="category">
+                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path d="M8 1.333L4.5 5H1.87S1 5.893 1 8.001C1 10.11 1.87 11 1.87 11H4.5L8 14.667z"/>
+                        <path d="M10.524 4.926l-.707.707.354.354a2.999 2.999 0 0 1 0 4.242l-.354.353.707.707.354-.353a4 4 0 0 0 0-5.656z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"/>
+                        <path d="M12.645 2.805l-.707.707.354.353a5.999 5.999 0 0 1 0 8.485l-.354.353.707.707.354-.353a7 7 0 0 0 0-9.899z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-weight="400" font-family="sans-serif" white-space="normal" overflow="visible"/>
+                    </g>
+                </svg>
+                <input type="range" min="1" max="100" value="100">
+            </div>
+            <hr>
+            <div class="category">
+                <svg height="16" width="16.003" xmlns="http://www.w3.org/2000/svg">
+                    <g color="#000" font-family="sans-serif" font-weight="400" white-space="normal">
+                        <path d="M11.428 10c-.45.005-.78-.012-1.049.137a.673.673 0 0 0-.299.357c-.059.157-.08.341-.08.576v1.858c0 .235.022.421.08.578a.668.668 0 0 0 .3.355c.268.148.598.134 1.048.139h2.146c.45-.005.778.01 1.047-.139a.668.668 0 0 0 .3-.355c.058-.157.08-.343.08-.578V11.07c0-.235-.022-.42-.08-.576a.672.672 0 0 0-.3-.357c-.269-.15-.597-.132-1.047-.137h-.002zm-5-9c-.45.005-.78-.012-1.049.137a.673.673 0 0 0-.299.357c-.059.157-.08.341-.08.576v1.858c0 .235.022.421.08.578a.668.668 0 0 0 .3.355c.268.148.598.134 1.048.139h2.146c.45-.005.778.01 1.047-.139a.668.668 0 0 0 .3-.355c.058-.157.08-.343.08-.578V2.07c0-.235-.022-.42-.08-.576a.672.672 0 0 0-.3-.357C9.352.987 9.024 1.005 8.574 1h-.002zm-5 9c-.45.005-.78-.012-1.049.137a.673.673 0 0 0-.299.357c-.059.157-.08.341-.08.576v1.858c0 .235.022.421.08.578a.668.668 0 0 0 .3.355c.268.148.598.134 1.048.139h2.146c.45-.005.778.01 1.047-.139a.668.668 0 0 0 .3-.355c.058-.157.08-.343.08-.578V11.07c0-.235-.022-.42-.08-.576a.672.672 0 0 0-.3-.357c-.269-.15-.597-.132-1.047-.137h-.002z" overflow="visible" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none"/>
+                        <path d="M3.5 7c-.667 0-1.138.408-1.322.777C1.993 8.147 2 8.5 2 8.5v2h1v-2s.007-.147.072-.277C3.138 8.092 3.167 8 3.5 8h8c.333 0 .362.092.428.223.065.13.072.277.072.277v2h1v-2s.007-.353-.178-.723A1.485 1.485 0 0 0 11.5 7z" fill-rule="evenodd" overflow="visible" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal"/>
+                        <path d="M7.006 4.498l-.006 3 1 .004.006-3z" fill-rule="evenodd" overflow="visible" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal"/>
+                    </g>
+                </svg>
+                <div>Wired Connected</div>
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m6 13 5-5-5-5z" fill="black"/>
+                </svg>
+            </div>
+            <div class="category">
+                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+                    <g color="#000">
+                        <path d="M5 13V3h6v10z" overflow="visible" style="marker:none"/>
+                        <path d="M3 12.338c.01.839-.015 1.451.262 1.953.138.251.374.45.666.56.292.11.64.149 1.078.149H11c.439 0 .786-.039 1.078-.148.293-.11.526-.31.664-.56.277-.503.249-1.115.258-1.954V3.631c-.01-.839.02-1.453-.258-1.955a1.25 1.25 0 0 0-.664-.559C11.786 1.007 11.438 1 11 1h-1V0H6v1h-.994c-.438 0-.786.007-1.078.117-.292.11-.528.308-.666.559-.277.502-.252 1.116-.262 1.955v8.705zm1-.014V3.633c.01-.853.04-1.298.137-1.475.016-.028.057-.073.143-.105.06-.023.298-.053.726-.053H11c.428 0 .664.03.727.053.085.032.125.077.14.105.096.173.123.618.133 1.475v8.705c-.01.854-.037 1.298-.133 1.47-.015.03-.055.074-.14.106-.123.046-.349.086-.727.086H5.006c-.378 0-.604-.04-.726-.086-.086-.032-.127-.077-.143-.105-.098-.178-.126-.62-.137-1.485z" font-family="sans-serif" font-weight="400" overflow="visible" style="line-height:normal;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none" white-space="normal"/>
+                    </g>
+                </svg>  
+                <div>100%</div>
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m6 13 5-5-5-5z" fill="black"/>
+                </svg>
+            </div>
+            <hr>
+            <div class="category">
+                <svg height='16' width='16.01465'>
+                  <g style='display:inline' transform='translate(-632,-320)'>
+                    <path d='m 640.18165,321.00391 c -2.48304,-0.0657 -4.92247,1.19408 -6.24805,3.49218 -1.9281,3.3427 -0.77551,7.62899 2.57032,9.5625 3.34581,1.93352 7.63439,0.79191 9.5625,-2.55078 1.9281,-3.34269 0.77551,-7.63289 -2.57032,-9.5664 -1.04556,-0.60423 -2.1858,-0.90763 -3.31445,-0.9375 z M 640.00001,322 a 6,6 0 0 1 6,6 6,6 0 0 1 -6,6 6,6 0 0 1 -6,-6 6,6 0 0 1 6,-6 z' id='path2760-7-2' style='color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.66666687;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
+                    <path d='m 638.69016,320.122 v 1.54513 c 0.86819,-0.1783 1.76406,-0.1766 2.63222,0.005 V 320.122 Z m -2.75363,0.98912 -2.00544,1.70491 0.98801,1.17757 c 0.54939,-0.69591 1.23601,-1.27137 2.01736,-1.69076 z m 8.12867,0.0127 -0.99285,1.18353 c 0.0573,0.0293 0.11416,0.0595 0.17056,0.0905 0.71061,0.41285 1.33657,0.95679 1.84457,1.60287 l 1.00514,-1.19769 z m -11.60999,4.21684 -0.44056,2.59535 1.51535,0.26739 c -0.0273,-0.8866 0.12755,-1.76904 0.45509,-2.59274 z m 15.08573,0.003 -1.5228,0.26851 c 0.32999,0.82318 0.48779,1.70497 0.46365,2.59088 l 1.53286,-0.27 z m -13.68247,4.69464 -1.35149,0.78058 h -3.4e-4 l 1.33101,2.27098 1.33808,-0.77238 c -0.59006,-0.66203 -1.03836,-1.43772 -1.31723,-2.27918 z m 12.30081,0.003 c -0.13616,0.42225 -0.31536,0.82932 -0.53478,1.21481 -0.22083,0.38188 -0.48014,0.74014 -0.77388,1.0692 l 1.33883,0.77313 1.30158,-2.28811 z m -9.55687,3.47164 -0.53479,1.4688 2.47953,0.88448 0.52585,-1.44534 c -0.81119,-0.11877 -1.59279,-0.39022 -2.30338,-0.79995 -0.0563,-0.0351 -0.11203,-0.0711 -0.16721,-0.10799 z m 6.8133,0.0153 c -0.75448,0.46543 -1.59675,0.77091 -2.47468,0.89752 l 0.53031,1.45651 2.46761,-0.91651 z' id='path2762-5-9' style='color:#000000;display:inline;overflow:visible;visibility:visible;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.33333337;marker:none;enable-background:accumulate'/>
+                    <path d='m 639.64845,323.01367 c -1.60235,0.11249 -3.12186,0.99052 -3.98242,2.48242 -1.37689,2.38706 -0.55308,5.45342 1.83593,6.83399 2.38903,1.38058 5.45319,0.56088 6.83008,-1.82617 1.37689,-2.38706 0.55308,-5.45145 -1.83594,-6.83203 -0.89588,-0.51773 -1.88625,-0.72569 -2.84765,-0.65821 z M 640.00001,324 a 4,4 0 0 1 4,4 4,4 0 0 1 -4,4 4,4 0 0 1 -4,-4 4,4 0 0 1 4,-4 z' id='path2764-3-1' style='color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.66666681;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
+                  </g>
+                </svg>
+                
+                <div>Settings</div>
+            </div>
+            <div class="category">
+                <svg xmlns:cc='http://creativecommons.org/ns#' xmlns:dc='http://purl.org/dc/elements/1.1/' height='16.0002' id='svg7384' xmlns:osb='http://www.openswatchbook.org/uri/2009/osb' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:svg='http://www.w3.org/2000/svg' version='1.1' width='16' xmlns='http://www.w3.org/2000/svg'>
+
+                    <g id='layer9' label='status' style='display:inline' transform='translate(-273.0002,47)'/>
+                    <g id='layer2' style='display:inline' transform='translate(-32,-320)'/>
+                    <g id='layer4' style='display:inline' transform='translate(-32,-320)'/>
+                    <g id='g1812' style='display:inline' transform='translate(-32,-320)'/>
+                    <g id='g6217' style='display:inline' transform='translate(-32,-320)'/>
+                    <g id='layer3' style='display:inline' transform='translate(-32,-320)'/>
+                    <g id='g1833' style='display:inline' transform='translate(-32,-320)'/>
+                    <g id='layer1' style='display:inline' transform='translate(-32,-320)'>
+                      
+                      <path d='m 33.99996,327.0001 -3e-5,9.0001 h 12 v -9 z m 0.99997,1.0001 h 10 v 7 h -10 z' id='rect4269' style='color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.00000048;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
+                      <path d='m 40,320 c -2.76214,0 -5,2.23787 -5,5 v 2 h 1 v -2 c 0,-2.222 1.77799,-4 4,-4 2.22201,0 4,1.778 4,4 v 2 h 1 v -2 c 0,-2.76213 -2.23786,-5 -5,-5 z' id='rect4212' style='color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill: black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
+                      <path d='m 34,327 v 9 h 12 v -9 z m 1,1 h 10 v 7 H 35 Z m 4,2 v 3 h 2 v -3 z' id='path2740' style='color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4.00000048;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
+                    </g>
+                  </svg>
+                <div>Lock</div>
+            </div>
+            <div class="category">
+                <svg height='16' width='16'>
+
+                <g id='layer9' label='status' style='display:inline' transform='translate(-293.00017,47)'/>
+                <g id='layer2' style='display:inline' transform='translate(-51.999969,-320)'/>
+                <g id='layer4' style='display:inline' transform='translate(-51.999969,-320)'/>
+                <g id='g1812' style='display:inline' transform='translate(-51.999969,-320)'/>
+                <g id='g6217' style='display:inline' transform='translate(-51.999969,-320)'/>
+                <g id='layer3' style='display:inline' transform='translate(-51.999969,-320)'/>
+                <g id='g1833' style='display:inline' transform='translate(-51.999969,-320)'/>
+                <g id='layer1' style='display:inline' transform='translate(-51.999969,-320)'>
+                    
+                    <path d='m 53,327.42578 c -0.0103,0.6801 0.08756,1.36907 0.300781,2.04297 C 54.153684,332.16433 56.665737,334 59.5,334 c 2.834263,0 5.346316,-1.83567 6.199219,-4.53125 0.852902,-2.69558 -0.1484,-5.63546 -2.470703,-7.25586 l -0.572266,0.82031 c 1.968157,1.37329 2.811943,3.85259 2.089844,6.13477 C 64.023994,331.45015 61.903421,333 59.5,333 c -2.403421,0 -4.523994,-1.54985 -5.246094,-3.83203 -0.722099,-2.28218 0.121687,-4.76148 2.089844,-6.13477 l -0.572266,-0.82031 c -1.741727,1.2153 -2.740579,3.17259 -2.771484,5.21289 z' id='path3202' style='color:#000000;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
+                    <path d='m 59,321 v 7 h 1 v -7 z' id='path3206' style='fill: black;color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:none;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.82842755;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/>
+                </g>
+                </svg>
+                <div>Power Off / Log Out</div>
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m6 13 5-5-5-5z" fill="black"/>
+                </svg>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- ---------- -->

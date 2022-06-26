@@ -12,13 +12,10 @@ import { AppsService } from './services/apps.services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit{
-
-  selected: boolean = false;
+export class AppComponent implements OnInit {
 
   e!: any;
   isFullscreen: boolean = false;
-  focusedApp!: any;
 
   softwares!: Software[];
   icons!: Icon[];
@@ -26,10 +23,13 @@ export class AppComponent implements OnInit{
   shortcuts!: any;
 
   contextmenu: boolean = false;
+  context: string = '';
   position!: string;
 
-  //
-  onClickDesktop: Subject<void> = new Subject<void>();
+  focusedSoftware!: Software | null;
+  selectedTab!: string;
+
+  onClick: Subject<void> = new Subject<void>();
 
   constructor(private appsService: AppsService, @Inject(DOCUMENT) private document: any) {
 
@@ -45,18 +45,27 @@ export class AppComponent implements OnInit{
     this.softwares = this.appsService.softwares;
     this.icons = this.appsService.icons;
     this.shortcuts = this.appsService.explorer[2][4][0][4];
-    
+
+    this.focusedSoftware = this.appsService.getFocusedSoftware();
+  }
+
+  resetSelected() {
+    this.onClick.next();
   }
 
   leftClick(e: any, dbl: boolean, shortcut?: Array<any>): void
   {
+    this.focusedSoftware = null;
     this.contextmenu = false;
+    this.context = '';
     if(dbl && shortcut) {
       this.appsService.unfocusAllWindows();
       const software = this.softwares.find(x => x.type === shortcut[1]);
       if(software)
       {
         software.addWindow = new Window(shortcut[0]);
+        software.focused = true;
+        this.focusedSoftware = software;
       }
     }
     else
@@ -75,7 +84,7 @@ export class AppComponent implements OnInit{
           element[3] = false;
         });
       }
-      this.onClickDesktop.next();
+      this.resetSelected();
       this.appsService.unfocusAllWindows();
       this.appsService.unfocusAllSoftwares();
     }
@@ -109,12 +118,14 @@ export class AppComponent implements OnInit{
       }
       
       if(this.contextmenu === false){
+        this.context = '';
         this.contextmenu = !this.contextmenu;
       }
     }
     if(shortcut)
     {
-      console.log('right click on ' + shortcut[0]);
+      this.contextmenu = false;
+      this.context = shortcut[0];
     }
     return false;
   }
@@ -135,5 +146,16 @@ export class AppComponent implements OnInit{
 
   drop(event: CdkDragDrop<any>) {
     moveItemInArray(this.shortcuts, event.previousIndex, event.currentIndex);
+  }
+
+  focus(e: any) {
+    if(e.focused === false)
+    {
+      this.focusedSoftware = null;
+    }
+    else
+    {
+      this.focusedSoftware = e;
+    }
   }
 }

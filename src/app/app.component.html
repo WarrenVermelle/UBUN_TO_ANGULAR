@@ -1,8 +1,9 @@
 <div id="root"(contextmenu)="false">
   <div class="ref"></div>
-  <app-panel [event]="onClickDesktop"></app-panel>
+  <!-- revoir selected -->
+  <app-panel [event]="onClick" [focusedSoftware]="focusedSoftware" [selected]="selectedTab"></app-panel>
   <div id="background">
-    <app-launcher [softwares]="softwares" [icons]="icons"></app-launcher>
+    <app-launcher [softwares]="softwares" [icons]="icons" (focusChanged)="focusedSoftware = $event" (selectReset)="selectedTab = $event"></app-launcher>
     <div id="desktop" (click)="leftClick($event, false)" (contextmenu)="rightClick($event)">
       <div id="shortcuts" cdkDropList (cdkDropListDropped)="drop($event)">
         <div *ngFor="let shortcut of shortcuts" class="desktop shortcut {{ shortcut[0] }}"
@@ -17,21 +18,30 @@
           </svg>
           
           <div class="desktop">{{ shortcut[0] | titlecase }}</div>
+
+          <div class="context" *ngIf="context === shortcut[0]">
+            CONTEXT
+          </div>
         </div>
       </div>
 
       <div id="dragzone">
         <div *ngFor="let software of softwares">
-          <app-window *ngFor="let window of software.windows" [software]="software" [window]="window" [explorer]="shortcuts"></app-window>
+          <app-window *ngFor="let window of software.windows" 
+          [software]="software" 
+          [window]="window" 
+          [explorer]="shortcuts"
+          (focusChanged)="focus($event)"
+          (resetSelected)="resetSelected()"></app-window>
         </div>
       </div>
-
-      <app-contextmenu *ngIf="contextmenu" [ngStyle]="{'transform': position}" [softwares]="softwares"></app-contextmenu>
+      
+      <app-contextmenu *ngIf="contextmenu" [ngStyle]="{'transform': position}"></app-contextmenu>
       <div class="button" (click)="onFullscreen()" [ngClass]="{ 'active': isFullscreen }">Fullscreen</div>
     </div>
   </div>
 </div>
 
 <div class="mobile">
-      <div>Sorry this website is not compatible yet with smartphone & tablet</div>
+  <div>Sorry this website is not compatible yet with smartphone & tablet</div>
 </div>

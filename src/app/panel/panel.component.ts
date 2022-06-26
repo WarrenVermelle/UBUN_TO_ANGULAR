@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { Icon } from '../models/icon.model';
+import { Software } from '../models/software.model';
+import { AppsService } from '../services/apps.services';
 
 @Component({
   selector: 'app-panel',
@@ -11,20 +14,23 @@ export class PanelComponent implements OnInit {
   date = new Date();
   time!: number;
 
-  selected!: string;
-
   private eventSubscription!: Subscription;
 
   @Input() event!: Observable<void>;
+  @Input() focusedSoftware!: Software | null;
+  @Input() selected!: string;
 
-  constructor() {
+  icons!: Array<Icon>;
+
+  constructor(private appsService: AppsService) {
     setInterval(() => {
       this.time = Date.now();
     }, 1);
   }
 
   ngOnInit(): void {
-    this.eventSubscription = this.event.subscribe(() => this.selected = '');
+    this.eventSubscription = this.event.subscribe(() => this.selected = 'none');
+    this.icons = this.appsService.icons;
   }
 
   ngOnDestroy() {
@@ -32,20 +38,49 @@ export class PanelComponent implements OnInit {
   }
 
   onClick(indicator?: string) {
-    if(indicator === 'menu')
+    if(!indicator)
     {
-      this.selected = 'menu';
-      console.log('open menu panel');
-    }
-    else if(indicator === 'datetime')
-    {
-      this.selected = 'datetime';
-      console.log('open datetime panel');
+      this.selected = 'none';
     }
     else
     {
-      this.selected = 'indicators';
-      console.log('open indicators panel');
+      if(indicator === 'menu')
+      {
+        if(this.selected === 'menu')
+        {
+          this.selected = 'none';
+        }
+        else
+        {
+          this.selected = 'menu';
+        }
+      }
+      else if(indicator === 'datetime')
+      {
+        if(this.selected === 'datetime')
+        {
+          this.selected = 'none';
+        }
+        else
+        {
+          this.selected = 'datetime';
+        }
+      }
+      else if(indicator === 'indicators')
+      {
+        if(this.selected === 'indicators')
+        {
+          this.selected = 'none';
+        }
+        else
+        {
+          this.selected = 'indicators';
+        }
+      }
+      else
+      {
+        this.selected = 'none';
+      }
     }
   }
 }

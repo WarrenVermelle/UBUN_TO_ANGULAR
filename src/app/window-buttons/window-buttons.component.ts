@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Software } from '../models/software.model';
 import { Window } from '../models/window.model';
 
@@ -11,6 +11,8 @@ export class WindowButtonsComponent implements OnInit {
 
   @Input() software!: Software;
   @Input() window!: Window;
+
+  @Output() closed: EventEmitter<Software> = new EventEmitter();
 
   constructor(private elementRef: ElementRef) { }
 
@@ -46,6 +48,7 @@ export class WindowButtonsComponent implements OnInit {
     this.window.maximized = false;
     this.window.focused = false;
     this.window.position = 'translate3d(150px, 150px, 0px)';
+    this.closed.emit(this.software);
   }
 
 }

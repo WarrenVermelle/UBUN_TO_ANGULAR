@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Software } from '../models/software.model';
-import { Window } from '../models/window.model';
+import { Component, OnInit } from '@angular/core';
+import { AppsService } from '../services/apps.services';
 
 @Component({
   selector: 'app-contextmenu',
@@ -9,19 +8,24 @@ import { Window } from '../models/window.model';
 })
 export class ContextmenuComponent implements OnInit {
 
-  @Input() softwares!: Array<Software>;
-
-  constructor() { }
+  constructor(private appsService: AppsService) { }
 
   ngOnInit(): void {
   }
 
-  createFolder() {
+  createFolder() 
+  {
     console.log('new folder created')
   }
 
-  openFiles() {
-    this.softwares[2].addWindow = new Window('desktop');
+  openFiles() 
+  {
+    this.appsService.openWindow(this.appsService.softwares[2], 'desktop');
+  }
+
+  openTerminal() 
+  {
+    this.appsService.openWindow(this.appsService.softwares[3], 'desktop');
   }
 
 }

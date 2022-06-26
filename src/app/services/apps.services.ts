@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Icon } from "../models/icon.model";
 import { Software } from "../models/software.model";
+import { Window } from "../models/window.model";
 
 @Injectable({
     providedIn: 'root'
@@ -48,7 +49,7 @@ export class AppsService {
     ];
 
     softwares: Array<Software> = [
-        new Software('identity', this.icons[1] , false, true, 0, false, 0, false, 0, 0, true, false, false, false),
+        new Software('identity', this.icons[1] , false, true, 0, false, 0, false, 0, 0, true, false, false, true),
         new Software('browser', this.icons[2], true, true, 0, false, 0, false, 0, 1, false, true, true, false),
         new Software('files', this.icons[3], true, true, 1, false, 0, false, 0, 2, true, true, true, false),
         new Software('terminal', this.icons[4], true, true, 2, false, 0, false, 0, 3, true, true, true, false),
@@ -188,5 +189,23 @@ export class AppsService {
         for(const software of this.getAllSoftwares()) {
             software.focused = false;
         }
+    }
+
+    getFocusedSoftware(): Software | null {
+        const focusedSoftware =  this.softwares.find(x => x.focused === true);
+        if(focusedSoftware !== undefined)
+        {
+            return focusedSoftware;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    openWindow(software: Software, type?: string) {
+        let win = software.addWindow = new Window(type);
+        win.focused = true;
+        software.focused = true;
     }
 }

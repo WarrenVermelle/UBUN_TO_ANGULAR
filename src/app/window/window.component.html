@@ -15,7 +15,7 @@
         <app-terminal-tools *ngIf="software.type === 'terminal'"></app-terminal-tools>
     
         <!-- reduce, maximize & close buttons -->
-        <app-window-buttons [software]="software" [window]="window"></app-window-buttons>
+        <app-window-buttons [software]="software" [window]="window" (closed)="closed($event)"></app-window-buttons>
     </div>
     <div class="content_container">
         <app-explorer-content *ngIf="software.type === 'files'" [file]="window.type"></app-explorer-content>
